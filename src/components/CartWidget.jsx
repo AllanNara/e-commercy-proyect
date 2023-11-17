@@ -1,7 +1,8 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { PropTypes } from "prop-types"
 import Box from '@mui/material/Box';
 
-export default function CartWidget() {
+function CartWidget({ items }) {
   return (
     <Box sx={{
       borderRadius: "10px",
@@ -9,7 +10,13 @@ export default function CartWidget() {
       bgcolor: "whitesmoke"
     }}>
       <ShoppingCartIcon/> 
-      <span className='notify'>2</span>
+      <span className='notify'>{items}</span>
     </Box>
   )
 }
+
+CartWidget.propTypes = {
+  items: PropTypes.number.isRequired
+}
+
+export default CartWidget

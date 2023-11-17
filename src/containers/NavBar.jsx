@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import CartWidget from "./CartWidget";
-import PositionedMenu from "./PositionedMenu";
+import CartWidget from "../components/CartWidget.jsx";
+import PositionedMenu from "./PositionedMenu.jsx";
 
 export default function NavBar() {
 	return (
@@ -17,7 +17,7 @@ export default function NavBar() {
 				<Grid container justifyContent="space-between" alignItems="center">
 					<h3>Brand</h3>
 					<PositionedMenu />
-					<CartWidget />
+					<CartWidget items={2}/>
 				</Grid>
 			</Container>
 		</Box>
