@@ -1,4 +1,5 @@
 import ItemListContainer from "../components/ItemListContainer.jsx";
+import ItemCount from "./ItemCount.jsx";
 import NavBar from "./NavBar.jsx";
 
 export default function App() {
@@ -6,6 +7,7 @@ export default function App() {
 		<>
 			<NavBar />
 			<ItemListContainer greeting={"Saludos"}/>
+			<ItemCount/>
 		</>
 	);
 }
