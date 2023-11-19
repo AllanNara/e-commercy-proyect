@@ -19,10 +19,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ItemCount() {
 	const [count, setCount] = useState(1);
-	const [open, setOpen] = useState(false);
+	const [notification, setNotification] = useState(false);
 
 	const incrementQuantity = () => {
-    if (count <= 4) {
+    if (count < 5) {
       setCount((count) => count + 1);
     }
 	};
@@ -34,11 +34,11 @@ export default function ItemCount() {
 	};
 
 	const onAdd = () => {
-		setOpen(true);
+		setNotification(true);
 	};
 
 	const handleClose = () => {
-		setOpen(false);
+		setNotification(false);
 	};
 
 	return (
@@ -59,7 +59,7 @@ export default function ItemCount() {
 				<Grid item>
 					<AddToCartButton onAdd={onAdd} />
 					<Dialog
-						open={open}
+						open={notification}
 						onClose={handleClose}
 					>
 						<DialogTitle>
