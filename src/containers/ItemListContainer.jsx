@@ -23,7 +23,7 @@ function ItemListContainer({ greeting }) {
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center"}}>
-      <p>{ greeting }</p> 
+      <p style={{alignSelf: "center"}}>{ greeting }</p> 
       {data ? <ItemList items={data}/> : <p>Esperando contenido...</p>}
     </Container>
   )

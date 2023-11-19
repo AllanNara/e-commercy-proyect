@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import CartWidget from "../components/CartWidget.jsx";
-import PositionedMenu from "./PositionedMenu.jsx";
+import PositionedMenu from "../components/PositionedMenu.jsx";
 
 export default function NavBar() {
 	return (

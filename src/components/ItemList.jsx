@@ -1,16 +1,27 @@
-import PropTypes from 'prop-types';
-import Item from './Item';
+import PropTypes from "prop-types";
+import Item from "./Item";
 
 function ItemList({ items }) {
-  return (
-    <div>
-      {items.map(item => (<Item key={item.id} item={item} />))}
-    </div>
-  )
+	return (
+		<div
+			style={{
+				display: "flex",
+				flexWrap: "wrap",
+				justifyContent: "center",
+				alignItems: "center",
+				width: "100%",
+				gap: 25,
+			}}
+		>
+			{items.map((item) => (
+				<Item key={item.id} item={item} />
+			))}
+		</div>
+	);
 }
 
 ItemList.propTypes = {
-  items: PropTypes.array.isRequired
-}
+	items: PropTypes.array.isRequired,
+};
 
-export default ItemList
+export default ItemList;
