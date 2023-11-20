@@ -16,22 +16,11 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { useCount } from "../hooks";
 
 function ItemCount({ stock, initial }) {
-	const [count, setCount] = useState(initial || 1);
+	const { count, decrement, increment  } = useCount(initial, 1, stock)
 	const [notification, setNotification] = useState(false);
-
-	const incrementQuantity = () => {
-		if (count < stock) {
-			setCount((count) => count + 1);
-		}
-	};
-
-	const decrementQuantity = () => {
-		if (!(count < 2)) {
-			setCount((count) => count - 1);
-		}
-	};
 
 	const onAdd = () => {
 		setNotification(true);
@@ -75,13 +64,13 @@ function ItemCount({ stock, initial }) {
 								justifyContent: "space-around",
 							}}
 						>
-							<Button onClick={decrementQuantity}>
+							<Button onClick={decrement}>
 								<RemoveIcon fontSize="small" />
 							</Button>
 							<Typography component={"span"} margin={"auto"}>
 								{stock ? count : 0}
 							</Typography>
-							<Button onClick={incrementQuantity}>
+							<Button onClick={increment}>
 								<AddIcon fontSize="small" />
 							</Button>
 						</Box>
