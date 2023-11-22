@@ -4,7 +4,7 @@ import { Badge, IconButton } from "@mui/material";
 
 function CartWidget({ items }) {
 	return (
-		<IconButton>
+		<IconButton sx={{margin: `0 35px`}}>
 			<Badge
 				badgeContent={items}
 				color="error"

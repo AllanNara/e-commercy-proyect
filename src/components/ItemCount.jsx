@@ -18,15 +18,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useCount } from "../hooks";
 
-function ItemCount({ stock, initial }) {
+function ItemCount({ stock, initial, onAdd }) {
 	const { count, decrement, increment  } = useCount(initial, 1, stock)
 	const [notification, setNotification] = useState(false);
 
-	const onAdd = () => {
+	const handleOpen = () => {
 		setNotification(true);
 	};
-
+	
 	const handleClose = () => {
+		onAdd(count)
 		setNotification(false);
 	};
 
@@ -80,7 +81,7 @@ function ItemCount({ stock, initial }) {
 					<Button
 						variant="outlined"
 						sx={{ width: 230, p: 1 }}
-						onClick={onAdd}
+						onClick={handleOpen}
 						disabled={!stock}
 					>
 						<Typography
@@ -113,6 +114,7 @@ function ItemCount({ stock, initial }) {
 
 ItemCount.propTypes = {
 	stock: PropTypes.number.isRequired,
+	onAdd: PropTypes.func.isRequired,
 	initial: PropTypes.number,
 };
 

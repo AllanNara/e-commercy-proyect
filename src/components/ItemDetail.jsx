@@ -1,8 +1,16 @@
 import PropTypes from "prop-types";
 import ItemCount from "./ItemCount";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Button, Typography } from "@mui/material";
 
 function ItemDetail({ item }) {
 	const { title, price, description, category, image } = item;
+	const [quantityAdded, setQuantity] = useState(0);
+
+	const handleOnAdd = (quantity) => {
+		setQuantity(quantity)
+	}
 
 	return (
 		<>
@@ -19,13 +27,33 @@ function ItemDetail({ item }) {
 					marginTop: 7,
 				}}
         >
-        <button style={{alignSelf: "flex-start"}}>{'<'} Volver al listado</button>
+        <Link to={"/"}>
+					<button style={{alignSelf: "flex-start"}}>{'<'} Volver al listado</button>
+				</Link>
 				<img src={image} alt={title} style={{ height: "150px", width: "150px" }} />
 				<h2>{title}</h2>
 				<span>Categoria: {category}</span>
 				<span>Precio: {price}</span>
 				<p>{description}</p>
-				<ItemCount initial={1} stock={10} />
+				{quantityAdded > 0 ? 
+				(<Button
+					variant="outlined"
+					sx={{ width: 230, p: 1 }}
+				>
+					<Link to={"/cart"} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+						<Typography
+							textTransform="initial"
+							variant="body1"
+							fontWeight={200}
+							fontSize={13}
+						>
+							Finalizar compra
+						</Typography>
+					</Link>
+				</Button>
+				)
+				: (<ItemCount initial={1} stock={10} onAdd={handleOnAdd}/>) 
+			}
 			</div>
 		</>
 	);

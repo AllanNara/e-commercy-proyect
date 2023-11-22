@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Item({ item }) {
-  const { title, price, image } = item;
+  const { id, title, price, image } = item;
   return (
     <div
     style={{
@@ -19,7 +20,7 @@ function Item({ item }) {
       <img src={image} alt={title} style={{ height: "100px", width: "100px" }} />
       <h4>{title}</h4>
       <p>Precio: {price}</p>
-      <button>Ver detalle</button>
+      <Link to={`/item/${id}`}>Ver detalle</Link>
     </div>
   )
 }

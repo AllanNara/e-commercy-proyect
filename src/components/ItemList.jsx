@@ -11,6 +11,7 @@ function ItemList({ items }) {
 				alignItems: "center",
 				width: "100%",
 				gap: 25,
+				marginBottom: "50px"
 			}}
 		>
 			{items.map((item) => (
