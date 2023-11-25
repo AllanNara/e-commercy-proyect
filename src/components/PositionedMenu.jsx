@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 
 export default function BasicMenu() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -12,12 +13,25 @@ export default function BasicMenu() {
 	return (
 		<div>
 			<Button id="basic-button" onClick={handleClick} sx={{ color: "black" }}>
-				Categorías
+				Buscar por categoría
 			</Button>
 			<Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-				<MenuItem onClick={handleClose}>Category1</MenuItem>
-				<MenuItem onClick={handleClose}>Category2</MenuItem>
-				<MenuItem onClick={handleClose}>Category3</MenuItem>
+				{["all", "electronics", "jewelery", "men's clothing", "women's clothing"].map(
+					(category, index) => {
+						let categoryName = "Todas las categorías";
+						if(category === "electronics") categoryName = "Electronica";
+						if(category === "jewelery") categoryName = "Joyería";
+						if(category === "men's clothing") categoryName = "Ropa masculina";
+						if(category === "women's clothing") categoryName = "Ropa femenina";
+						return (
+							<Link to={category !== "all" ? `/category/${category}` : "/"} key={index}>
+								<MenuItem onClick={handleClose}>
+									{categoryName}
+								</MenuItem>
+							</Link>
+						);
+					}
+				)}
 			</Menu>
 		</div>
 	);

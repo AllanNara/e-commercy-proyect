@@ -1,8 +1,9 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import CartWidget from "./CartWidget";
-import PositionedMenu from "./PositionedMenu";
+import CartWidget from "../components/CartWidget.jsx";
+import PositionedMenu from "../components/PositionedMenu.jsx";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
 	return (
@@ -15,9 +16,9 @@ export default function NavBar() {
 		>
 			<Container>
 				<Grid container justifyContent="space-between" alignItems="center">
-					<h3>Brand</h3>
+					<Link to={`/`}><h3>E-ComMercy</h3></Link>
 					<PositionedMenu />
-					<CartWidget />
+					<Link to={`/cart`}><CartWidget items={2}/></Link>
 				</Grid>
 			</Container>
 		</Box>
