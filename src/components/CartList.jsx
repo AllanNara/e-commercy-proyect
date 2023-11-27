@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types'
+import CartItem from './CartItem'
 
 function CartList({ list }) {
   return (
-    <div>CartList</div>
+    <div style={{width: "70vw"}}>
+      {list.map((item) => {
+        return (
+          <CartItem key={item.id} {...{ item }} />
+        )
+      })}
+    </div>
   )
 }
 

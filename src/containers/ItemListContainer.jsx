@@ -18,7 +18,12 @@ function ItemListContainer({ greeting = "" }) {
 					data = await fetch(`https://fakestoreapi.com/products/category/${categoryid}`);
 				else data = await fetch(`https://fakestoreapi.com/products`);
 				const json = await data.json();
-				setData(json);
+				const convert = json.map((item) => {
+					const thumbnail = item.image;
+					delete item.image
+					return { ...item, thumbnail }
+				})
+				setData(convert);
 			} catch (error) {
 				console.log("Ocurrio un error\n", error);
 			}
