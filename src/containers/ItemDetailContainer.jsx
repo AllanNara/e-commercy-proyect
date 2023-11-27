@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import ItemDetail from "../components/ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 export default function ItemDetailContainer() {
   const [data, setData] = useState(null)
@@ -27,7 +28,7 @@ export default function ItemDetailContainer() {
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center"}}>
-      {data ? <ItemDetail item={data}/> : <p>Esperando producto...</p>}
+      {data ? <ItemDetail item={data}/> : <Spinner />}
     </Container>
   )
 }
