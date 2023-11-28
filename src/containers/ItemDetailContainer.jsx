@@ -13,6 +13,8 @@ export default function ItemDetailContainer() {
       try {
         const data = await fetch(`https://fakestoreapi.com/products/${itemid}`)
         const json = await data.json();
+        json.thumbnail = json.image;
+        delete json.image
         setData(json)  
       } catch (error) {
         console.log("Ocurrio un error\n", error)

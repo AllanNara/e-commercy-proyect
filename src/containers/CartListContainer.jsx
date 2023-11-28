@@ -2,11 +2,12 @@ import CartList from "../components/CartList"
 import useCart from "../hooks/useCart"
 
 export default function CartListContainer() {
-  const { cartList } = useCart() 
+  const { getCart } = useCart()
+  const { cart, total_items } = getCart() 
 
   return (
     <>
-      { cartList.length ? (<CartList list={cartList} />) : (<p>No hay productos</p>) }
+      { total_items ? (<CartList list={cart} />) : (<p>No hay productos</p>) }
     </>
     )
 }

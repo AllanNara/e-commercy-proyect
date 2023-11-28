@@ -3,13 +3,20 @@ import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Button, Typography } from "@mui/material";
+import useCart from "../hooks/useCart";
 
 function ItemDetail({ item }) {
-	const { title, price, description, category, image } = item;
+	const { title, price, description, category, thumbnail, id } = item;
 	const [quantityAdded, setQuantity] = useState(0);
+	const { addToCart } = useCart()
 
 	const handleOnAdd = (quantity) => {
 		setQuantity(quantity);
+		const item = {
+			title, price, thumbnail, id
+		}
+
+		addToCart(item, quantity)
 	};
 
 	return (
@@ -30,7 +37,7 @@ function ItemDetail({ item }) {
 				<Link to={"/"}>
 					<button style={{ alignSelf: "flex-start" }}>{"<"} Volver al listado</button>
 				</Link>
-				<img src={image} alt={title} style={{ height: "150px", width: "150px" }} />
+				<img src={thumbnail} alt={title} style={{ height: "150px", width: "150px" }} />
 				<h2>{title}</h2>
 				<span>Categoria: {category}</span>
 				<span>Precio: {price}</span>

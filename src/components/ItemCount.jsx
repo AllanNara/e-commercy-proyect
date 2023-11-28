@@ -22,9 +22,7 @@ function ItemCount({ stock, initial, onAdd }) {
 	const { count, decrement, increment  } = useCount(initial, 1, stock)
 	const [notification, setNotification] = useState(false);
 
-	const handleOpen = () => {
-		setNotification(true);
-	};
+	const handleOpen = () => setNotification(true);
 	
 	const handleClose = () => {
 		onAdd(count)
