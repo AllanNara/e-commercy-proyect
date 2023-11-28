@@ -1,8 +1,6 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { PropTypes } from "prop-types";
 import { Badge, IconButton } from "@mui/material";
 import useCart from "../hooks/useCart";
-import { ShoppingCartOutlined } from "@mui/icons-material";
 
 function CartWidget() {
 	const { getCart } = useCart()
