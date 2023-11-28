@@ -3,12 +3,14 @@ import CartItem from './CartItem'
 
 function CartList({ list }) {
   return (
-    <div style={{width: "70vw"}}>
-      {list.map((item) => {
-        return (
-          <CartItem key={item.id} {...{ item }} />
-        )
-      })}
+    <div>
+      <ul style={{width: "90%"}}>
+        {list.map((item) => {
+          return (
+            <CartItem key={item.id} {...{ item }} />
+          )
+        })}
+      </ul>
     </div>
   )
 }
