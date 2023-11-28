@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import useCart from '../hooks/useCart';
 
 function CartItem({ item }) {
-  const { id, quantity, title, price, thumbnail, total_price } = item;
+  const { id, quantity, title, price, thumbnail, total } = item;
   const { removeItem } = useCart()
 
   return (
@@ -11,7 +11,7 @@ function CartItem({ item }) {
         <p>{title}</p>
         <p>${price}</p>
         <p>{quantity}</p>
-        <p>TOTAL: ${total_price}</p>
+        <p>TOTAL: ${total}</p>
         <button onClick={() => removeItem(id)}>remove</button>
       </div>
     )
