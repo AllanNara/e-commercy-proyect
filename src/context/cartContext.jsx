@@ -9,7 +9,10 @@ export const CartProvider = ({ children }) => {
 	const addToCart = (item, quantity) => {
 		const { title, price, thumbnail, id } = item;
 		if(isInCart(id)) return false
-		setCartList((list) => [...list, { id, title, price, thumbnail, quantity, total: price * quantity }]);
+		setCartList((list) => [
+			...list, 
+			{ id, title, price, thumbnail, quantity, total: Number((price * quantity).toFixed(2)) }
+		]);
 		return true
 	};
 
@@ -30,7 +33,8 @@ export const CartProvider = ({ children }) => {
 	const getCart = () => {
 		return {
 			cart: cartList,
-			total_items: cartList.reduce((acc, curr) => acc + curr.quantity , 0)
+			total_items: cartList.reduce((acc, curr) => acc + curr.quantity , 0),
+			total_to_pay: cartList.reduce((acc, curr) => acc + curr.total, 0)
 		}
 	}
 

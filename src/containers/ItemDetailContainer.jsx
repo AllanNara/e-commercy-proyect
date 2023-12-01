@@ -3,30 +3,21 @@ import ItemDetail from "../components/ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import useFirestore from "../hooks/useFirestore";
 
 export default function ItemDetailContainer() {
-  const [data, setData] = useState(null)
-  const { itemid } = useParams();
+  const [data, setData] = useState(null);
+  const { Product } = useFirestore()
+  const { itemId } = useParams();
 
   useEffect(() => {
-    const fetchData = async() => {
-      try {
-        const data = await fetch(`https://fakestoreapi.com/products/${itemid}`)
-        const json = await data.json();
-        json.thumbnail = json.image;
-        delete json.image
-        setData(json)  
-      } catch (error) {
-        console.log("Ocurrio un error\n", error)
-      }
-    }
-
-    fetchData();
-    // setTimeout(() => fetchData(), 2000);
-		return () => {
+    Product.read(itemId)
+      .then(data => setData(data))
+      .catch(err => console.log("Fatal error: ", err))
+    return () => {
 			setData(null)
 		}
-  }, [itemid])
+  }, [itemId, Product])
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center"}}>

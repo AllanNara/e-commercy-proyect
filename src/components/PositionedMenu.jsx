@@ -3,10 +3,11 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function BasicMenu() {
+function BasicMenu({ categories }) {
 	const [anchorEl, setAnchorEl] = useState(null);
-	const open = Boolean(anchorEl);
+
 	const handleClick = (event) => setAnchorEl(event.currentTarget);
 	const handleClose = () => setAnchorEl(null);
 
@@ -15,24 +16,27 @@ export default function BasicMenu() {
 			<Button id="basic-button" onClick={handleClick} sx={{ color: "black" }}>
 				Buscar por categoría
 			</Button>
-			<Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-				{["all", "electronics", "jewelery", "men's clothing", "women's clothing"].map(
-					(category, index) => {
-						let categoryName = "Todas las categorías";
-						if(category === "electronics") categoryName = "Electronica";
-						if(category === "jewelery") categoryName = "Joyería";
-						if(category === "men's clothing") categoryName = "Ropa masculina";
-						if(category === "women's clothing") categoryName = "Ropa femenina";
-						return (
-							<Link to={category !== "all" ? `/category/${category}` : "/"} key={index}>
-								<MenuItem onClick={handleClose}>
-									{categoryName}
-								</MenuItem>
-							</Link>
-						);
-					}
-				)}
+			<Menu
+				id="basic-menu"
+				anchorEl={anchorEl}
+				open={Boolean(anchorEl)}
+				onClose={handleClose}
+			>
+				<Link to="/">
+					<MenuItem onClick={handleClose}>Todas las categorías</MenuItem>
+				</Link>
+				{categories.length ? categories.map(({ name, key, id }) => (
+					<Link to={`/category/${key}`} key={id}>
+						<MenuItem onClick={handleClose}>{name}</MenuItem>
+					</Link>
+				)) : (<MenuItem onClick={handleClose} sx={{fontSize: 30}}>...</MenuItem>)}
 			</Menu>
 		</div>
 	);
 }
+
+BasicMenu.propTypes = {
+	categories: PropTypes.array.isRequired,
+};
+
+export default BasicMenu;

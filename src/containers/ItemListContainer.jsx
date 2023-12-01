@@ -5,36 +5,23 @@ import ItemList from "../components/ItemList";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import Spinner from "../components/Spinner";
+import useFirestore from "../hooks/useFirestore";
+
 
 function ItemListContainer({ greeting = "" }) {
 	const [data, setData] = useState(null);
-	const { categoryid } = useParams();
+	const { Product } = useFirestore()
+	const { categoryId } = useParams();
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				let data;
-				if (categoryid)
-					data = await fetch(`https://fakestoreapi.com/products/category/${categoryid}`);
-				else data = await fetch(`https://fakestoreapi.com/products`);
-				const json = await data.json();
-				const convert = json.map((item) => {
-					const thumbnail = item.image;
-					delete item.image
-					return { ...item, thumbnail }
-				})
-				setData(convert);
-			} catch (error) {
-				console.log("Ocurrio un error\n", error);
-			}
-		};
-
-		fetchData();
-		// setTimeout(() => fetchData(), 2000)
+		const options = [categoryId ? [["category", "==", categoryId]] : null, undefined]
+		Product.readAll(...options)
+			.then(data => setData(data))
+			.catch(err => console.log("Fatal error: ", err))
 		return () => {
 			setData(null);
 		};
-	}, [categoryid]);
+	}, [categoryId, Product]);
 
 	return (
 		<Container

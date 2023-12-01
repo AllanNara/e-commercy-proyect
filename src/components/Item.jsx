@@ -11,15 +11,15 @@ function Item({ item }) {
       justifyContent: "center",
       alignItems: "center",
       width: "30%",
-      height: "300px",
+      height: "400px",
       margin: "auto",
       padding: 10,
       border: "1px solid black",
     }}
     >
-      <img src={thumbnail} alt={title} style={{ height: "100px", width: "100px" }} />
+      <img src={thumbnail} alt={title} style={{ height: "auto", width: "300px", objectFit: "cover", overflow: "hidden" }} />
       <h4>{title}</h4>
-      <p>Precio: {price}</p>
+      <p>Precio: ${price}</p>
       <Link to={`/item/${id}`}>Ver detalle</Link>
     </div>
   )
