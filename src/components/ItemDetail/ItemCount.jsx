@@ -16,7 +16,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
-import useCount from "../hooks/useCount";
+import useCount from "../../hooks/useCount";
 
 function ItemCount({ stock, initial, onAdd }) {
 	const { count, decrement, increment  } = useCount(initial, 1, stock)

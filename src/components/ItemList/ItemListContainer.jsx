@@ -1,11 +1,11 @@
 import { PropTypes } from "prop-types";
 import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
-import ItemList from "../components/ItemList";
+import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
-import Spinner from "../components/Spinner";
-import useFirestore from "../hooks/useFirestore";
+import Spinner from "../helpers/Spinner";
+import useFirestore from "../../hooks/useFirestore";
 
 
 function ItemListContainer({ greeting = "" }) {

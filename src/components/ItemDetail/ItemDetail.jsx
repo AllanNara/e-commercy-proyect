@@ -3,10 +3,10 @@ import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Button, Typography } from "@mui/material";
-import useCart from "../hooks/useCart";
+import useCart from "../../hooks/useCart";
 
 function ItemDetail({ item }) {
-	const { title, price, description, category, thumbnail, id } = item;
+	const { title, price, stock, status, description, category, thumbnail, id } = item;
 	const [quantityAdded, setQuantity] = useState(0);
 	const { addToCart } = useCart()
 
@@ -56,7 +56,7 @@ function ItemDetail({ item }) {
 						</Button>
 					</Link>
 				) : (
-					<ItemCount initial={1} stock={10} onAdd={handleOnAdd} />
+					<ItemCount initial={status ? 1 : 0} stock={stock} onAdd={handleOnAdd} />
 				)}
 			</div>
 		</>

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import useCart from '../hooks/useCart';
+import useCart from '../../hooks/useCart';
 
 function CartItem({ item }) {
   const { id, quantity, title, price, thumbnail, total } = item;

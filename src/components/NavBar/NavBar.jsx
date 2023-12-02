@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import CartWidget from "../components/CartWidget.jsx";
-import PositionedMenu from "../components/PositionedMenu.jsx";
+import CartWidget from "./CartWidget.jsx";
+import PositionedMenu from "./PositionedMenu.jsx";
 import { Link } from "react-router-dom";
-import useFirestore from "../hooks/useFirestore.jsx";
+import useFirestore from "../../hooks/useFirestore.jsx";
 import { useEffect, useState } from "react";
 
 export default function NavBar() {

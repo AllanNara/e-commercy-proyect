@@ -1,6 +1,6 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge, IconButton } from "@mui/material";
-import useCart from "../hooks/useCart";
+import useCart from "../../hooks/useCart";
 
 function CartWidget() {
 	const { getCart } = useCart()

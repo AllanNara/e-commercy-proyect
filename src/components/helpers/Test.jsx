@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useFirestore from "../hooks/useFirestore";
+import useFirestore from "../../hooks/useFirestore";
 // import { productsArray } from "../services/mock";
 
 function Test() {
@@ -12,8 +12,8 @@ function Test() {
 			// const categories = Array.from(new Set(allProducts.map(item => item.category)));
 			// console.log({categories})
 
-			const allCategories = await Category.readAll();
-			console.log({allCategories})
+			// const allCategories = await Category.readAll();
+			// console.log({allCategories})
 			// categories.forEach((cat) => {
 			// 	Category.create({name: cat, key: cat.charAt(0).toUpperCase() + cat.slice(1)})
 			// 		.then((res) => console.log("exito: ", res))
@@ -31,7 +31,7 @@ function Test() {
 			// });
 		}
 		if (load) testing();
-	}, [load, Product]);
+	}, [load]);
 
 	return (
 		<>
