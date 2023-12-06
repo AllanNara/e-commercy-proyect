@@ -4,13 +4,13 @@ import Container from "@mui/material/Container";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
-import Spinner from "../helpers/Spinner";
-import useFirestore from "../../hooks/useFirestore";
+import Spinner from "../common/Spinner";
+import useStore from "../../hooks/useStore";
 
 
 function ItemListContainer({ greeting = "" }) {
 	const [data, setData] = useState(null);
-	const { Product } = useFirestore()
+	const { Product } = useStore()
 	const { categoryId } = useParams();
 
 	useEffect(() => {

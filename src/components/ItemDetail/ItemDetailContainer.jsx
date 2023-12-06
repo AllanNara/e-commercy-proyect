@@ -2,12 +2,12 @@ import { Container } from "@mui/material";
 import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Spinner from "../helpers/Spinner";
-import useFirestore from "../../hooks/useFirestore";
+import Spinner from "../common/Spinner";
+import useStore from "../../hooks/useStore";
 
 export default function ItemDetailContainer() {
   const [data, setData] = useState(null);
-  const { Product } = useFirestore()
+  const { Product } = useStore()
   const { itemId } = useParams();
 
   useEffect(() => {

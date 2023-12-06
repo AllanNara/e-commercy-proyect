@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-function CheckoutForm({ formData, inputChange, errors, validateForm }) {
+function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder }) {
 
-	const handleConfirm = async(e) => {
+	const handleConfirm = (e) => {
 		e.preventDefault();
-		validateForm();
+		validateForm() && createOrder()
 	};
 
   const handleChange = ({target}) => {
@@ -131,7 +131,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm }) {
 					<div>
 						<input
 							type="submit"
-              value="Continuar con la compra"
+							value="Continuar con la compra"
 							style={{ padding: "2px 20px 2px 20px", marginTop: 15}}
 						/>
 					</div>

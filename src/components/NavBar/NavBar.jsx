@@ -3,13 +3,13 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import CartWidget from "./CartWidget.jsx";
 import PositionedMenu from "./PositionedMenu.jsx";
-import { Link } from "react-router-dom";
-import useFirestore from "../../hooks/useFirestore.jsx";
+import { Link, Outlet } from "react-router-dom";
+import useStore from "../../hooks/useStore.jsx";
 import { useEffect, useState } from "react";
 
 export default function NavBar() {
 	const [categoryList, setCategoryList] = useState([])
-	const { Category } = useFirestore()
+	const { Category } = useStore()
 
 	useEffect(() => {
 		Category.readAll()
@@ -19,6 +19,7 @@ export default function NavBar() {
 
 
 	return (
+		<>
 		<Box
 			sx={{
 				bgcolor: "antiquewhite",
@@ -34,5 +35,8 @@ export default function NavBar() {
 				</Grid>
 			</Container>
 		</Box>
+		
+		<Outlet />
+		</>
 	);
 }

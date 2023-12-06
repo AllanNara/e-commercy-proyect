@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-const useForm = (...fields) => {
+const useForm = (fields, verifyFields) => {
+	const [errors, setErrors] = useState({});
 	const [formData, setFormData] = useState(
 		fields.reduce((data, field) => {
 			data[field] = "";
 			return data;
 		}, {})
 	);
-	const [errors, setErrors] = useState({});
+
+	const inputChange = ({ key, value }) => setFormData({ ...formData, [key]: value });
 
 	const resetForm = () => {
 		setFormData(
@@ -18,19 +20,10 @@ const useForm = (...fields) => {
 		);
 	};
 
-	const inputChange = ({ key, value }) => {
-		setFormData({
-			...formData,
-			[key]: value,
-		});
-	};
-
 	const validateForm = () => {
-		const newErrors = {};
-		for (const key in formData) {
-			if (formData[key] === "") newErrors[key] = `Campo faltante`;
-		}
-		setErrors(newErrors);
+		const err = verifyFields(formData)
+		setErrors(err)
+		return !Object.keys(err).length;
 	};
 
 	return { formData, inputChange, resetForm, errors, validateForm };
