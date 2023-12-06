@@ -19,7 +19,7 @@ export default class OrderRepository extends BaseRepository {
       const newOrderRef = doc(this.collectionRef);
       this.batch.set(newOrderRef, documentToInsert);
 
-      // Actualizar producto en la colección "products"
+      // Actualizar stock de los productos afectados
       for (const productToUpdate of stockToUpdate) {
         const productRef = doc(Product.collectionRef, productToUpdate.id);
         this.batch.update(productRef, productToUpdate.update);

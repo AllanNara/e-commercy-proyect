@@ -1,5 +1,6 @@
 export const productsArray = [
 	{
+		id: "f5df4e77-98bd-4535-9bcb-c1a5a22e7cea",
 		price: 262.56,
 		title: "Zapatillas deportivas Nike Air Max, estilo urbano, hombre",
 		description:
@@ -12,6 +13,7 @@ export const productsArray = [
 			"https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw999be96d/products/NI_CD4165-001/NI_CD4165-001-1.JPG",
 	},
 	{
+		id: "73ae4d94-0f73-47cd-a3cc-5570e2d3bf17",
 		price: 124.9,
 		title: "Chaqueta de cuero Levi's, diseño moderno, hombre",
 		description:
@@ -23,6 +25,7 @@ export const productsArray = [
 		thumbnail: "https://i.pinimg.com/736x/91/ed/e1/91ede1d23a72a179fdb087b7feb9e543.jpg",
 	},
 	{
+		id: "b3fae0b3-448f-4042-b77a-1ed568348ee0",
 		price: 262.33,
 		title: "Vestido de fiesta elegante Guess, tendencia, mujer",
 		description:
@@ -35,6 +38,7 @@ export const productsArray = [
 			"https://guesseu.scene7.com/is/image/GuessEU/W83K44WAFF0-JBLK-ALT1?wid=900&fmt=jpeg&qlt=70&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
 	},
 	{
+		id: "abfac975-ecc1-4349-aada-9c89f7b72807",
 		price: 62.56,
 		title: "Pantalones vaqueros skinny Levi's, look juvenil, hombre",
 		description:
@@ -46,6 +50,7 @@ export const productsArray = [
 		thumbnail: "https://i.pinimg.com/1200x/e1/25/b3/e125b30057930344071bd61854359ac7.jpg",
 	},
 	{
+		id: "06471907-783f-4ed5-8e0a-b355be3be704",
 		price: 357.1,
 		title: "Collar de plata con colgante de corazón, estilo chic",
 		description:
@@ -58,6 +63,7 @@ export const productsArray = [
 			"https://i.pinimg.com/originals/aa/18/0b/aa180b6b6daa11e13cd98ed6d0569c4d.jpg",
 	},
 	{
+		id: "578620b5-a9bc-45ac-9653-72f26bb7f819",
 		price: 223.32,
 		title: "Sneakers Adidas Originals Superstar, para un toque urbano, hombre",
 		description:
@@ -70,6 +76,7 @@ export const productsArray = [
 			"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4d31131033b54e67b045ab2f017c6cda_9366/Zapatillas_Superstar_UNISEX_Blanco_FU7714_01_standard.jpg",
 	},
 	{
+		id: "8bf4aa5f-f2ea-4b04-b947-c232fc0c1818",
 		price: 257.3,
 		title: "Bufanda de lana de diseño italiano Gucci, unisex",
 		description:
@@ -82,6 +89,7 @@ export const productsArray = [
 			"https://img.mytheresa.com/1094/1236/90/jpeg/catalog/product/34/P00583977_b1.jpg",
 	},
 	{
+		id: "8f9cbe85-e3ef-472f-84ae-a0674e61fed9",
 		price: 29.83,
 		title: "Bolso de cuero Michael Kors, para un estilo contemporáneo",
 		description:
@@ -94,6 +102,7 @@ export const productsArray = [
 			"https://mibranda.es/wp-content/uploads/2020/02/160-35h5gc6s3l-scarlet-asa-michael_kors-mibranda.jpg",
 	},
 	{
+		id: "fdac4d17-3e28-4eec-acf9-906972b36303",
 		price: 48600,
 		title: "Anillo de compromiso de diamante Tiffany & Co., moderno y elegante",
 		description:
@@ -106,6 +115,7 @@ export const productsArray = [
 			"https://media.tiffany.com/is/image/Tiffany/EcomItemL2/anillo-de-compromiso-tiffany-true-con-en-platino-con-un-diamante-tiffany-true-63594873_996049_ED_M.jpg",
 	},
 	{
+		id: "e0943e35-9149-4688-8ace-2bcd84ff46f0",
 		price: 350.03,
 		title: "Sombrero de paja estilo fedora, toque juvenil, hombre",
 		description:
@@ -118,6 +128,7 @@ export const productsArray = [
 			"https://www.celine.com/on/demandware.static/-/Sites-masterCatalog/default/dw38933af6/images/large/2AUR7707U.03NA_2_SUM23.jpg",
 	},
 	{
+		id: "af2c4f79-7b4f-462f-ad37-4cf587df924c",
 		price: 118.41,
 		title: "Camiseta estampada con logo, look fresco, mujer",
 		description:
@@ -130,6 +141,7 @@ export const productsArray = [
 			"https://ae01.alicdn.com/kf/S040c1715c8974b0491f51b233e4144a2h.jpg_640x640Q90.jpg_.webp",
 	},
 	{
+		id: "ec630885-99ee-49f9-9e79-927625fcf72c",
 		price: 325.29,
 		title: "Pantalones de jogger Nike, comodidad y estilo, hombre",
 		description:
@@ -142,6 +154,7 @@ export const productsArray = [
 			"https://www.digitalsport.com.ar/files/products/62f56c19886d1-556466-1200x1200.jpg",
 	},
 	{
+		id: "0e97204a-3d56-4f47-b2d9-ed11d32ec431",
 		price: 184.39,
 		title: "Blusa sin mangas con estampado floral, tendencia femenina",
 		description:
@@ -154,6 +167,7 @@ export const productsArray = [
 			"https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/07e489e69c2f5597c57053f2a82844d7.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp",
 	},
 	{
+		id: "38988cec-e457-4ccd-a227-50cd979dc6d1",
 		price: 100.4,
 		title: "Gorra de béisbol con logo en relieve, accesorio juvenil, unisex",
 		description:
@@ -166,6 +180,7 @@ export const productsArray = [
 			"https://dcdn.mitiendanube.com/stores/002/226/607/products/go31-1442c175ff1e72bc1416617981075394-1024-1024.jpeg",
 	},
 	{
+		id: "09d3bba4-d3d1-4a04-8f6a-a683be9a31f4",
 		price: 74.08,
 		title: "Mochila moderna Herschel, para llevar tus cosas con estilo",
 		description:
@@ -178,6 +193,7 @@ export const productsArray = [
 			"https://acdn.mitiendanube.com/stores/001/338/506/products/10014-01132-os_031-2a894654eb155517d916069300878772-640-0.jpg",
 	},
 	{
+		id: "3b96d123-fb9e-439a-9a6a-3fdd55965237",
 		price: 41.01,
 		title: "Pulsera de cuero con detalles metálicos, accesorio trendy",
 		description:
@@ -190,6 +206,7 @@ export const productsArray = [
 			"https://falabella.scene7.com/is/image/Falabella/7912379_1?wid=800&hei=800&qlt=70",
 	},
 	{
+		id: "35f2122b-bfe6-41ae-b1a5-75448afd5953",
 		price: 113.43,
 		title: "Zapatillas de skate Vans, para un estilo desenfadado, hombre",
 		description:
@@ -202,6 +219,7 @@ export const productsArray = [
 			"https://www.digitalsport.com.ar/files/products/606b413feb547-551819-500x500.jpg",
 	},
 	{
+		id: "afded837-72da-4e61-8ec6-b3c7c3dc273f",
 		price: 63.43,
 		title: "Vestido casual con detalles de encaje, look juvenil, mujer",
 		description:
@@ -213,6 +231,7 @@ export const productsArray = [
 		thumbnail: "https://i.pinimg.com/564x/35/98/fb/3598fb8c1c6ec3fbb9a59899b53d2011.jpg",
 	},
 	{
+		id: "915df807-1607-43f9-870d-3307b5a04827",
 		price: 207.53,
 		title: "Gafas de sol estilo aviador, accesorio imprescindible",
 		description:
@@ -224,6 +243,7 @@ export const productsArray = [
 		thumbnail: "https://http2.mlstatic.com/D_NQ_NP_713853-MLA48381706856_112021-O.webp",
 	},
 	{
+		id: "6a4e78d8-73af-4a9d-8eef-c56a0d288ee4",
 		price: 69.36,
 		title: "Sudadera con capucha y estampado gráfico, para un look urbano, hombre",
 		description:
