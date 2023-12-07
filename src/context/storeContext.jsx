@@ -1,18 +1,23 @@
-import { createContext } from "react";
-import PropTypes from 'prop-types'
-import { Category, Order, Product } from "../services"
+import { createContext, useCallback, useState } from "react";
+import PropTypes from "prop-types";
 
 export const StoreContext = createContext(null);
 
 export const StoreProvider = ({ children }) => {
-  
-  return (
-    <StoreContext.Provider value={{ Category, Product, Order }}>
-      {children}
-    </StoreContext.Provider>
-  )
-}
+	const [productList, setProductList] = useState([]);
+
+	const updateProductList = useCallback((data) => {
+		setProductList(data)
+	}, []);
+
+
+	return (
+		<StoreContext.Provider value={{ productList, updateProductList }} >
+			{children}
+		</StoreContext.Provider>
+	);
+};
 
 StoreProvider.propTypes = {
-  children: PropTypes.node
-}
+	children: PropTypes.node,
+};

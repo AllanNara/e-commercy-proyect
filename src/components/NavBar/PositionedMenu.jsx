@@ -5,10 +5,14 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function BasicMenu({ categories }) {
+function BasicMenu({ categories, show, setShow }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 
-	const handleClick = (event) => setAnchorEl(event.currentTarget);
+	const handleClick = (event) => {
+		!show && setShow(true)
+		setAnchorEl(event.currentTarget)
+	};
+	
 	const handleClose = () => setAnchorEl(null);
 
 	return (
@@ -37,6 +41,9 @@ function BasicMenu({ categories }) {
 
 BasicMenu.propTypes = {
 	categories: PropTypes.array.isRequired,
+	show: PropTypes.bool.isRequired,
+	setShow: PropTypes.func.isRequired,
+
 };
 
 export default BasicMenu;

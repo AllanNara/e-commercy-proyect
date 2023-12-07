@@ -13,19 +13,16 @@ import {
 	IconButton,
 	Typography,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
-import RemoveIcon from "@mui/icons-material/Remove";
-import useCount from "../../hooks/useCount";
+import Counter from "../common/Counter";
 
-function ItemCount({ stock, initial, onAdd }) {
-	const { count, decrement, increment  } = useCount(initial, 1, stock)
+function ItemCount({ stock, initial, onAdd, changeQuantity, quantity }) {
 	const [notification, setNotification] = useState(false);
 
 	const handleOpen = () => setNotification(true);
 	
 	const handleClose = () => {
-		onAdd(count)
+		onAdd()
 		setNotification(false);
 	};
 
@@ -51,28 +48,7 @@ function ItemCount({ stock, initial, onAdd }) {
 						>
 							{stock ? `${stock} Unidades disponibles` : "No hay unidades disponibles"}
 						</Typography>
-						<Box
-							sx={{
-								backgroundColor: "#fff",
-								border: 1,
-								borderColor: "#ccc",
-								width: "95%",
-								margin: "auto",
-								height: "auto",
-								display: "flex",
-								justifyContent: "space-around",
-							}}
-						>
-							<Button onClick={decrement}>
-								<RemoveIcon fontSize="small" />
-							</Button>
-							<Typography component={"span"} margin={"auto"}>
-								{stock ? count : 0}
-							</Typography>
-							<Button onClick={increment}>
-								<AddIcon fontSize="small" />
-							</Button>
-						</Box>
+						<Counter initial={initial} maximum={stock} minimum={1} cb={changeQuantity}/>
 					</Box>
 				</Grid>
 				<Grid item>
@@ -95,7 +71,7 @@ function ItemCount({ stock, initial, onAdd }) {
 						<DialogTitle>Producto/s agregado/s</DialogTitle>
 						<DialogContent>
 							<DialogContentText>
-								Has agregado con exito {count} producto/s
+								Has agregado con exito {quantity} producto/s
 							</DialogContentText>
 						</DialogContent>
 						<DialogActions>
@@ -113,7 +89,9 @@ function ItemCount({ stock, initial, onAdd }) {
 ItemCount.propTypes = {
 	stock: PropTypes.number.isRequired,
 	onAdd: PropTypes.func.isRequired,
+	changeQuantity: PropTypes.func.isRequired,
 	initial: PropTypes.number,
+	quantity: PropTypes.number,
 };
 
 export default ItemCount;

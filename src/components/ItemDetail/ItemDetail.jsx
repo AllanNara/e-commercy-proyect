@@ -7,16 +7,17 @@ import useCart from "../../hooks/useCart";
 
 function ItemDetail({ item }) {
 	const { title, price, stock, status, description, category, thumbnail, id } = item;
-	const [quantityAdded, setQuantity] = useState(0);
-	const { addToCart } = useCart()
+	const [quantity, setQuantity] = useState();
+	const { addToCart } = useCart();
+	const [sendQuantity, setSendQuantity] = useState(false)
 
-	const handleOnAdd = (quantity) => {
+	const handleOnAdd = () => {
 		setQuantity(quantity);
 		const item = {
 			title, price, thumbnail, id
 		}
-
-		addToCart(item, quantity)
+		addToCart(item, quantity);
+		setSendQuantity(true)
 	};
 
 	return (
@@ -42,7 +43,7 @@ function ItemDetail({ item }) {
 				<span>Categoria: {category}</span>
 				<span>Precio: {price}</span>
 				<p>{description}</p>
-				{quantityAdded > 0 ? (
+				{sendQuantity ? (
 					<Link to={"/cart"} style={{ color: "inherit", textDecoration: "inherit" }}>
 						<Button variant="outlined" sx={{ width: 230, p: 1 }}>
 							<Typography
@@ -56,7 +57,7 @@ function ItemDetail({ item }) {
 						</Button>
 					</Link>
 				) : (
-					<ItemCount initial={status ? 1 : 0} stock={stock} onAdd={handleOnAdd} />
+					<ItemCount initial={status ? 1 : 0} stock={stock} onAdd={handleOnAdd} changeQuantity={setQuantity} quantity={quantity}/>
 				)}
 			</div>
 		</>

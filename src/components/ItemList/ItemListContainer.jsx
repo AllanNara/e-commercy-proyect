@@ -5,23 +5,35 @@ import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import Spinner from "../common/Spinner";
+import { Product } from "../../services";
 import useStore from "../../hooks/useStore";
 
-
 function ItemListContainer({ greeting = "" }) {
-	const [data, setData] = useState(null);
-	const { Product } = useStore()
+	const { productList, updateProductList } = useStore();
+	const [loading, setLoading] = useState(false);
 	const { categoryId } = useParams();
+	const [effectExecuted, setEffectExecuted] = useState(false);
 
 	useEffect(() => {
-		const options = [categoryId ? [["category", "==", categoryId]] : null, undefined]
-		Product.readAll(...options)
-			.then(data => setData(data))
-			.catch(err => console.log("Fatal error: ", err))
+		if (!effectExecuted && (!productList.length || categoryId)) {
+			setLoading(true);
+			const options = categoryId ? [["category", "==", categoryId]] : null;
+			Product.readAll(options)
+				.then((data) => updateProductList(data))
+				.catch((err) => console.log("Fatal error: ", err))
+				.finally(() => setLoading(false));
+			setEffectExecuted(true);
+		}
 		return () => {
-			setData(null);
+			if (productList.length && categoryId) {
+				updateProductList([]);
+			}
 		};
-	}, [categoryId, Product]);
+	}, [categoryId, updateProductList, productList, effectExecuted]);
+
+	useEffect(() => {
+		setEffectExecuted(false);
+	}, [categoryId]);
 
 	return (
 		<Container
@@ -41,7 +53,7 @@ function ItemListContainer({ greeting = "" }) {
 			>
 				{greeting}
 			</Typography>
-			{data ? <ItemList items={data} /> : <Spinner />}
+			{!loading ? <ItemList items={productList} /> : <Spinner />}
 		</Container>
 	);
 }

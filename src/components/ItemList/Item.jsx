@@ -26,7 +26,7 @@ function Item({ item }) {
 }
 
 Item.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
 }
 
 export default Item

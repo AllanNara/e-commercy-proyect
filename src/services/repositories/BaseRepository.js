@@ -21,6 +21,7 @@ export default class BaseRepository {
 	read = async (documentId) => {
 		try {
 			let ref = doc(this.collectionRef, documentId);
+			console.log({ref})
 			const snapshot = await getDoc(ref);
 			if (!snapshot.exists()) return null;
 			return { id: snapshot.id, ...snapshot.data() };

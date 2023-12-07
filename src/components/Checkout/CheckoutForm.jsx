@@ -146,6 +146,7 @@ CheckoutForm.propTypes = {
 	formData: PropTypes.object.isRequired,
 	errors: PropTypes.object,
 	validateForm: PropTypes.func,
+	createOrder: PropTypes.func.isRequired
 };
 
 export default CheckoutForm;

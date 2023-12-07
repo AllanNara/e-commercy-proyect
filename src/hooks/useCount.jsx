@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const useCount = (initial = 0, min, max) => {
+const useCount = (initial, min, max) => {
 	if (initial < min || initial > max) initial = min;
-	const [count, setCount] = useState(initial || 1);
+	const [count, setCount] = useState(initial);
 
 	const decrement = () => count > min && setCount((prev) => prev - 1);
 	const increment = () => count < max && setCount((prev) => prev + 1);

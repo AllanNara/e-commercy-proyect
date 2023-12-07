@@ -32,79 +32,8 @@
 // 		}
 // 		if (load) testing();
 // 	}, [load]);
-
-// 	return (
-// 		<>
-// 			<div>Test</div>
-// 			<button onClick={() => setLoad(!load)}>Holaaaaaa</button>
-// 		</>
-// 	);
-// }
-// export default Test;
-
-import { useState } from 'react'
-
-const useForm = (fields, verifyFields) => {
-const [errors, setErros] = useState({})
-  const [form, setForm] = useState(
-	fields.reduce((data, field) => {
-		data[field] = "";
-		return data;
-	}, {}));
-
-  const handleChange = ({ name, value }) => setForm({ ...form, [name]: value })
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-	const err = verifyFields(form)
-    setErros(err)
-    if (Object.keys(err).length === 0) console.log({form})
-  }
-
-  return { form, errors, handleChange, handleSubmit }
-}
-
-const ContactForm = () => {
-
-  const initialData = [
-	  'nombre',
-	  'correo',
-	  'asunto',
-	  'mensaje'
-  ]
-
-  const onValidate = (form) => {
-    let errors = {}
-    if (!form.nombre.trim()) errors.nombre = 'El campo "Nombre" no debe ser vacio.'
-    if (!form.correo.trim()) errors.correo = 'El campo "Correo" no debe ser vacio.'
-    if (!form.asunto.trim()) errors.asunto = 'El campo "Asunto" no debe ser vacio.'
-    if (!form.mensaje.trim()) errors.mensaje = 'El campo "Mensaje" no debe ser vacio.'
-    return errors
-  }
-
-  const { form, errors, handleChange, handleSubmit } = useForm(initialData, onValidate)
-
+export default function Test() {
   return (
-    <form className='w-100' onSubmit={handleSubmit}>
-      <label className='form-label'>Nombre</label>
-      <input type="text" className='form-control' name="nombre" value={form.nombre} onChange={handleChange}/>
-      {errors.nombre && <div className="alert alert-danger p-1">{errors.nombre}</div>}
-
-      <label className='form-label'>Correo electrónico</label>
-      <input type="email" className='form-control' name="correo" value={form.correo} onChange={handleChange}/>
-      {errors.correo && <div className="alert alert-danger p-1">{errors.correo}</div>}
-
-      <label className='form-label'>Asunto</label>
-      <input type="text" className='form-control'name="asunto" value={form.asunto} onChange={handleChange}/>
-      {errors.asunto && <div className="alert alert-danger p-1">{errors.asunto}</div>}
-
-      <label className='form-label'>Mensaje</label>
-      <textarea className='form-control'name="mensaje" value={form.mensaje} onChange={handleChange}/>
-      {errors.mensaje && <div className="alert alert-danger p-1">{errors.mensaje}</div>}
-
-      <button className='btn btn-warning mt-1 w-100' disabled={false}>{false ? "Enviando..." : "Enviar"}</button>
-    </form>
+    <div>Test</div>
   )
 }
-
-export default ContactForm

@@ -3,11 +3,10 @@ import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../common/Spinner";
-import useStore from "../../hooks/useStore";
+import { Product } from "../../services";
 
 export default function ItemDetailContainer() {
   const [data, setData] = useState(null);
-  const { Product } = useStore()
   const { itemId } = useParams();
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export default function ItemDetailContainer() {
     return () => {
 			setData(null)
 		}
-  }, [itemId, Product])
+  }, [itemId])
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center"}}>
