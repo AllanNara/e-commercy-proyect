@@ -30,7 +30,7 @@ function BasicMenu({ categories, show, setShow }) {
 					<MenuItem onClick={handleClose}>Todas las categorías</MenuItem>
 				</Link>
 				{categories.length ? categories.map(({ name, key, id }) => (
-					<Link to={`/category/${key}`} key={id}>
+					<Link to={`/category/${key}`} key={id} state={{ categoryId: id }}>
 						<MenuItem onClick={handleClose}>{name}</MenuItem>
 					</Link>
 				)) : (<MenuItem onClick={handleClose} sx={{fontSize: 30}}>...</MenuItem>)}

@@ -105,6 +105,38 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 							gap: 3,
 						}}
 					>
+						<label style={{ width: "100%" }} htmlFor="emailConfirmField">
+							Confirmar correo electronico:
+						</label>
+						<input
+							type="email"
+							name="emailConfirm"
+							id="emailConfirmField"
+							value={formData.emailConfirm}
+							onChange={handleChange}
+						/>
+						{errors && errors.emailConfirm && (
+							<span
+								style={{
+									color: "red",
+									flexGrow: 1,
+									alignSelf: "center",
+									textAlign: "left",
+								}}
+							>
+								*{errors.emailConfirm}
+							</span>
+						)}
+					</div>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							flexWrap: "wrap",
+							width: "auto",
+							gap: 3,
+						}}
+					>
 						<label style={{ width: "100%" }} htmlFor="phoneField">
 							Telefono:
 						</label>

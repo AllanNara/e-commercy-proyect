@@ -1,9 +1,25 @@
+import { doc, getDoc } from "firebase/firestore";
 import BaseRepository from "./BaseRepository";
 
 export default class ProductRepository extends BaseRepository {
 	constructor() {
 		super("products");
 	}
+
+	read = async (documentId) => {
+		try {
+			let ref = doc(this.collectionRef, documentId);
+			const snapshot = await getDoc(ref);
+			if (!snapshot.exists()) throw new Error("not-exist")
+			const data = snapshot.data()
+			const snapCategory = await getDoc(data.category)
+			const result = { ...data, id: snapshot.id, category: snapCategory.data().name };
+			return result;
+		} catch (error) {
+			console.error("Error al leer el documento:", error);
+			throw error
+		}
+	};
 
 	_validateDoc = async(data, verb) => {
 		const keys = Object.keys(data);

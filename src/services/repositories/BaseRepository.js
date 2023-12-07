@@ -21,9 +21,8 @@ export default class BaseRepository {
 	read = async (documentId) => {
 		try {
 			let ref = doc(this.collectionRef, documentId);
-			console.log({ref})
 			const snapshot = await getDoc(ref);
-			if (!snapshot.exists()) return null;
+			if (!snapshot.exists()) throw new Error("not-exist")
 			return { id: snapshot.id, ...snapshot.data() };
 		} catch (error) {
 			console.error("Error al leer el documento:", error);

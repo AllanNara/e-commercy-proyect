@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Test from '../common/Test'
 import ItemListContainer from '../ItemList/ItemListContainer'
@@ -13,7 +12,7 @@ export default function AppRoutes() {
       <Route element={<NavBar />}>
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/" element={<ItemListContainer greeting={"¡Bienvenido!"} />} />
-        <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route exact path="/category/:categoryKey" element={<ItemListContainer />} />
         <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
         <Route exact path="/cart" element={<CartListContainer />} />
         <Route exact path="/cart/checkout" element={<Checkout />} />

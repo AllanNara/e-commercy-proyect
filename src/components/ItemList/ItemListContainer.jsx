@@ -2,38 +2,55 @@ import { PropTypes } from "prop-types";
 import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import ItemList from "./ItemList";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import Spinner from "../common/Spinner";
-import { Product } from "../../services";
+import { Category, Product } from "../../services";
 import useStore from "../../hooks/useStore";
+import { doc } from "firebase/firestore";
+import firestoreInstance from "../../services/firebase.config";
 
 function ItemListContainer({ greeting = "" }) {
 	const { productList, updateProductList } = useStore();
 	const [loading, setLoading] = useState(false);
-	const { categoryId } = useParams();
+	const { categoryKey } = useParams();
+	const { state } = useLocation();
 	const [effectExecuted, setEffectExecuted] = useState(false);
 
 	useEffect(() => {
-		if (!effectExecuted && (!productList.length || categoryId)) {
-			setLoading(true);
-			const options = categoryId ? [["category", "==", categoryId]] : null;
-			Product.readAll(options)
-				.then((data) => updateProductList(data))
-				.catch((err) => console.log("Fatal error: ", err))
-				.finally(() => setLoading(false));
-			setEffectExecuted(true);
+		async function fetchListProducts() {
+			if (!effectExecuted && (!productList.length || categoryKey)) {
+				try {
+					setLoading(true);
+					let options;
+					if (state && state.categoryId) {
+						options = [["category", "==", doc(firestoreInstance, "/categories/", state.categoryId)]];
+					} else if (!state && categoryKey) {
+						const category = await Category.readAll([["key", "==", categoryKey]]);
+						options = [["category", "==", doc(firestoreInstance, "/categories/", category[0].id)]];
+					}
+					const result = await Product.readAll(options);
+					updateProductList(result);
+				} catch (error) {
+					console.error("Fatal error: ", error);
+				} finally {
+					setLoading(false);
+					setEffectExecuted(true);
+				}
+			}
 		}
+		fetchListProducts();
+
 		return () => {
-			if (productList.length && categoryId) {
+			if (productList.length && categoryKey) {
 				updateProductList([]);
 			}
 		};
-	}, [categoryId, updateProductList, productList, effectExecuted]);
+	}, [categoryKey, updateProductList, productList, effectExecuted, state]);
 
 	useEffect(() => {
 		setEffectExecuted(false);
-	}, [categoryId]);
+	}, [categoryKey]);
 
 	return (
 		<Container
