@@ -5,13 +5,16 @@ import ItemDetailContainer from '../ItemDetail/ItemDetailContainer'
 import CartListContainer from '../Cart/CartListContainer'
 import Checkout from '../Checkout/Checkout'
 import NavBar from '../NavBar/NavBar'
+import useStore from '../../hooks/useStore'
 
 export default function AppRoutes() {
+  const { productList } = useStore()
+
   return (
     <Routes>
       <Route element={<NavBar />}>
         <Route exact path="/test" element={<Test />} />
-        <Route exact path="/" element={<ItemListContainer greeting={"¡Bienvenido!"} />} />
+        <Route exact path="/" element={<ItemListContainer greeting={"¡Bienvenido!"} items={productList} />} />
         <Route exact path="/category/:categoryKey" element={<ItemListContainer />} />
         <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
         <Route exact path="/cart" element={<CartListContainer />} />

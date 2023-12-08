@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import CartWidget from "./CartWidget.jsx";
 import PositionedMenu from "./PositionedMenu.jsx";
 import { Link, Outlet } from "react-router-dom";
-// import useStore from "../../hooks/useStore.jsx";
 import { useEffect, useState } from "react";
 import { Category } from "../../services/index.js";
 

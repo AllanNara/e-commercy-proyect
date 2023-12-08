@@ -1,17 +1,16 @@
-import { PropTypes } from "prop-types";
-import { useEffect, useState } from "react";
-import Container from "@mui/material/Container";
-import ItemList from "./ItemList";
-import { useLocation, useParams } from "react-router-dom";
-import { Typography } from "@mui/material";
-import Spinner from "../common/Spinner";
-import { Category, Product } from "../../services";
-import useStore from "../../hooks/useStore";
 import { doc } from "firebase/firestore";
+import { PropTypes } from "prop-types";
+import { Typography, Container } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { Category, Product } from "../../services";
 import firestoreInstance from "../../services/firebase.config";
+import ItemList from "./ItemList";
+import Spinner from "../common/Spinner";
+import useStore from "../../hooks/useStore";
 
 function ItemListContainer({ greeting = "" }) {
-	const { productList, updateProductList } = useStore();
+	const { updateProductList, productList } = useStore();
 	const [loading, setLoading] = useState(false);
 	const { categoryKey } = useParams();
 	const { state } = useLocation();
@@ -19,38 +18,43 @@ function ItemListContainer({ greeting = "" }) {
 
 	useEffect(() => {
 		async function fetchListProducts() {
-			if (!effectExecuted && (!productList.length || categoryKey)) {
-				try {
-					setLoading(true);
-					let options;
-					if (state && state.categoryId) {
-						options = [["category", "==", doc(firestoreInstance, "/categories/", state.categoryId)]];
-					} else if (!state && categoryKey) {
-						const category = await Category.readAll([["key", "==", categoryKey]]);
-						options = [["category", "==", doc(firestoreInstance, "/categories/", category[0].id)]];
-					}
-					const result = await Product.readAll(options);
-					updateProductList(result);
-				} catch (error) {
-					console.error("Fatal error: ", error);
-				} finally {
-					setLoading(false);
-					setEffectExecuted(true);
+			try {
+				setLoading(true);
+				let options;
+				if (state && state.categoryId) {
+					options = [["category", "==", doc(firestoreInstance, "/categories/", state.categoryId)]];
+				} else if (!state && categoryKey) {
+					const category = await Category.readAll([["key", "==", categoryKey]]);
+					options = [["category", "==", doc(firestoreInstance, "/categories/", category[0].id)]];
 				}
+				const result = await Product.readAll(options);
+				updateProductList(result);
+			} catch (error) {
+				console.error("Fatal error: ", error);
+			} finally {
+				setLoading(false);
 			}
 		}
-		fetchListProducts();
+		
+		if (!effectExecuted && (!productList.length || categoryKey)) {
+			fetchListProducts();
+			setEffectExecuted(true);
+		}	
 
 		return () => {
 			if (productList.length && categoryKey) {
 				updateProductList([]);
+				setEffectExecuted(false);
 			}
 		};
-	}, [categoryKey, updateProductList, productList, effectExecuted, state]);
+	}, [categoryKey, effectExecuted, updateProductList, productList, state]);
 
 	useEffect(() => {
-		setEffectExecuted(false);
-	}, [categoryKey]);
+		if(categoryKey) {
+			updateProductList([]);
+			setEffectExecuted(false);
+		}
+	}, [categoryKey, updateProductList]);
 
 	return (
 		<Container
@@ -77,6 +81,7 @@ function ItemListContainer({ greeting = "" }) {
 
 ItemListContainer.propTypes = {
 	greeting: PropTypes.string,
+	items: PropTypes.array,
 };
 
 export default ItemListContainer;

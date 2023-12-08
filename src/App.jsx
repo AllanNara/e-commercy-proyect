@@ -1,17 +1,20 @@
 import { BrowserRouter } from "react-router-dom";
-import { StoreProvider } from "./context/storeContext.jsx";
-import { CartProvider } from "./context/cartContext.jsx";
+import { StoreProvider } from "./contexts/storeContext.jsx";
+import { CartProvider } from "./contexts/cartContext.jsx";
 import AppRoutes from "./components/Routes/AppRoutes.jsx";
+import { AuthProvider } from "./contexts/authContext.jsx";
 
 export default function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<StoreProvider>
+				<AuthProvider>
 					<CartProvider>
-						<AppRoutes />
+						<StoreProvider>
+							<AppRoutes />
+						</StoreProvider>
 					</CartProvider>
-				</StoreProvider>
+				</AuthProvider>
 			</BrowserRouter>
 		</>
 	);

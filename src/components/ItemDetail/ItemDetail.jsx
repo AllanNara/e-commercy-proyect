@@ -6,7 +6,6 @@ import { Button, Typography } from "@mui/material";
 import useCart from "../../hooks/useCart";
 
 function ItemDetail({ item }) {
-	console.log({item})
 	const { title, price, stock, status, description, category, thumbnail, id } = item;
 	const [quantity, setQuantity] = useState();
 	const { addToCart } = useCart();
