@@ -14,8 +14,12 @@ export default function ItemDetailContainer() {
     Product.read(itemId)
       .then(data => setData(data))
       .catch(err => {
-        if(err.message === "not-exist") navigate("/404/product-not-found")
-        console.log("Fatal error: ", err)
+        if(err.message === "not-exist") 
+          navigate(
+            "/item/404/product-not-found", 
+            { state: { message: "El producto buscado no existe en nuestro catalogo" } }
+          )
+        console.log("Document search error: ", err.message)
       })
     return () => {
 			setData(null)
