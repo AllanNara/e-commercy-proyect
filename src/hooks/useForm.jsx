@@ -9,9 +9,12 @@ const useForm = (fields, verifyFields) => {
 		}, {})
 	);
 
-	const inputChange = ({ key, value }) => setFormData({ ...formData, [key]: value });
-
+	const inputChange = ({ target: { name, value }}) =>{
+		if(!name) throw new Error(`Internal error, input: ${{name}}`);
+		setFormData({ ...formData, [name]: value });
+}
 	const resetForm = () => {
+		if(!validateForm()) return
 		setFormData(
 			fields.reduce((data, field) => {
 				data[field] = "";
@@ -21,8 +24,8 @@ const useForm = (fields, verifyFields) => {
 	};
 
 	const validateForm = () => {
-		const err = verifyFields(formData)
-		setErrors(err)
+		const err = verifyFields(formData);
+		setErrors(err);
 		return !Object.keys(err).length;
 	};
 

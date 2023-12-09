@@ -12,7 +12,7 @@ export default class OrderRepository extends BaseRepository {
 		try {
       this._validateDoc && await this._validateDoc(data, "create")
       const stockToUpdate = await this._checkStockToUpdate(data.items);
-      const documentToInsert = {...data, date: serverTimestamp() }
+      const documentToInsert = {...data, date: serverTimestamp(), state: "generated" }
       
       // Crear orden en la colección "orders"
       const newOrderRef = doc(this.collectionRef);

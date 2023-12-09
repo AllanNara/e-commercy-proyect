@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function BasicMenu({ categories, show, setShow }) {
+function CategoryMenu({ categories, show, setShow }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const handleClick = (event) => {
@@ -30,7 +30,7 @@ function BasicMenu({ categories, show, setShow }) {
 					<MenuItem onClick={handleClose}>Todas las categorías</MenuItem>
 				</Link>
 				{categories.length ? categories.map(({ name, key, id }) => (
-					<Link to={`/category/${key}`} key={id} state={{ categoryId: id }}>
+					<Link to={`/categories/${key}`} key={id} state={{ categoryId: id }}>
 						<MenuItem onClick={handleClose}>{name}</MenuItem>
 					</Link>
 				)) : (<MenuItem onClick={handleClose} sx={{fontSize: 30}}>...</MenuItem>)}
@@ -39,11 +39,11 @@ function BasicMenu({ categories, show, setShow }) {
 	);
 }
 
-BasicMenu.propTypes = {
+CategoryMenu.propTypes = {
 	categories: PropTypes.array.isRequired,
 	show: PropTypes.bool.isRequired,
 	setShow: PropTypes.func.isRequired,
 
 };
 
-export default BasicMenu;
+export default CategoryMenu;

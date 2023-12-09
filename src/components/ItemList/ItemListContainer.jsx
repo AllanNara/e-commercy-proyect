@@ -9,6 +9,10 @@ import ItemList from "./ItemList";
 import Spinner from "../common/Spinner";
 import useStore from "../../hooks/useStore";
 
+ItemListContainer.propTypes = {
+	greeting: PropTypes.string,
+};
+
 function ItemListContainer({ greeting = "" }) {
 	const { updateProductList, productList } = useStore();
 	const [loading, setLoading] = useState(false);
@@ -78,10 +82,5 @@ function ItemListContainer({ greeting = "" }) {
 		</Container>
 	);
 }
-
-ItemListContainer.propTypes = {
-	greeting: PropTypes.string,
-	items: PropTypes.array,
-};
 
 export default ItemListContainer;

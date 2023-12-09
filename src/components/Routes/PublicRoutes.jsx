@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 function PublicRoutes({ children, user, redirectTo = "/" }) {
 	if (user) {
-		<Navigate to={redirectTo} replace />;
+		return <Navigate to={redirectTo} replace />;
 	}
 
 	return children ? children : <Outlet />;

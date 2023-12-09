@@ -7,11 +7,6 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 		validateForm() && createOrder()
 	};
 
-  const handleChange = ({target}) => {
-    const { name, value } = target;
-    inputChange({ key: name, value })
-  }
-
 	return (
 		<>
 			<div
@@ -49,7 +44,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 							name="name"
 							id="nameField"
 							value={formData.name}
-							onChange={handleChange}
+							onChange={inputChange}
 						/>
 						{errors && errors.name && (
 							<span
@@ -81,7 +76,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 							name="email"
 							id="emailField"
 							value={formData.email}
-							onChange={handleChange}
+							onChange={inputChange}
 						/>
 						{errors && errors.email && (
 							<span
@@ -113,7 +108,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 							name="emailConfirm"
 							id="emailConfirmField"
 							value={formData.emailConfirm}
-							onChange={handleChange}
+							onChange={inputChange}
 						/>
 						{errors && errors.emailConfirm && (
 							<span
@@ -145,7 +140,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 							name="phone"
 							id="phoneField"
 							value={formData.phone}
-							onChange={handleChange}
+							onChange={inputChange}
 						/>
 						{errors && errors.phone && (
 							<span

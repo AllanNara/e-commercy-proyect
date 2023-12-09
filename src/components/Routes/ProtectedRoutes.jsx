@@ -5,7 +5,7 @@ function ProtectedRoutes({ children, user, redirectTo = "/" }) {
   const location = useLocation();
 
   if (!user) {
-		<Navigate to={redirectTo} state={{ from: location }} />;
+		return <Navigate to={redirectTo} state={{ from: location }} />;
 	}
 
 	return children ? children : <Outlet />;
