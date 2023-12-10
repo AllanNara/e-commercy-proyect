@@ -8,7 +8,7 @@ export const CartProvider = ({ children }) => {
 	const [cartList, setCartList] = useState([]);
 	const [refresh, setRefresh] = useState(false)
 
-	const cartStorage = new CartStorage(cartList, setCartList, setRefresh);
+	const cartStorage = new CartStorage(cartList, setCartList);
 	const {addToCart,clearCart,getCart,products,removeItem,setList,updateItem } = cartStorage
 
 	useEffect(() => {
