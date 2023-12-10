@@ -9,11 +9,11 @@ export default function App() {
 		<>
 			<BrowserRouter>
 				<AuthProvider>
-					<CartProvider>
-						<StoreProvider>
+					<StoreProvider>
+						<CartProvider>
 							<AppRoutes />
-						</StoreProvider>
-					</CartProvider>
+						</CartProvider>
+					</StoreProvider>
 				</AuthProvider>
 			</BrowserRouter>
 		</>

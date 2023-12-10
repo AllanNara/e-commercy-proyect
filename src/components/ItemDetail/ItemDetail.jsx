@@ -12,7 +12,7 @@ function ItemDetail({ item }) {
 	const [sendQuantity, setSendQuantity] = useState(false)
 
 	const handleOnAdd = () => {
-		setQuantity(quantity);
+		if(!quantity) return
 		const item = {
 			title, price, thumbnail, id
 		}

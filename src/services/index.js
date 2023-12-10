@@ -1,7 +1,7 @@
 import OrderRepository from "./repositories/OrderRepository";
 import ProductRepository from "./repositories/ProductRepository";
 import CategoryRepository from "./repositories/CategoryRepository";
-import AuthenticationFirebase from "./auth";
+import AuthenticationFirebase from "./auth/AuthFirebase";
 
 export const Product = new ProductRepository();
 export const Category = new CategoryRepository();

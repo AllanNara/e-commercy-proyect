@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import CartWidget from "./CartWidget.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Category } from "../../services/index.js";
 import Brand from "./Brand.jsx";
@@ -18,6 +18,7 @@ NavBar.propTypes = {
 export default function NavBar({ user, logout, load = false }) {
 	const [categoryList, setCategoryList] = useState([]);
 	const [showCategories, setShowCategories] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (showCategories) {
@@ -53,9 +54,13 @@ export default function NavBar({ user, logout, load = false }) {
 								<Link to={`/login`}>Ingresar</Link>
 								<Link to={`/register`}>Registrarse</Link>
 							</>
-						) : (<button onClick={logout}>Cerrar sesion</button>)}
+						) : (
+							<button onClick={() => logout().then(() => navigate("/"))}>
+								Cerrar sesion
+							</button>
+						)}
 						<Link to={`/cart`}>
-							<CartWidget load={load}/>
+							<CartWidget load={load} />
 						</Link>
 					</Grid>
 				</Container>

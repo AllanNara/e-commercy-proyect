@@ -10,7 +10,7 @@ function Counter({ initial, minimum, maximum, cb }) {
 	const { count, decrement, increment } = useCount(initial, minimum, maximum);
 
   useEffect(() => {
-    if(count) cb(count)
+    cb && cb(count)
   },[count, cb])
 
 	return (
@@ -43,7 +43,7 @@ Counter.propTypes = {
 	initial: PropTypes.number,
   minimum: PropTypes.number,
   maximum: PropTypes.number,
-  cb: PropTypes.func.isRequired
+  cb: PropTypes.func
 };
 
 export default Counter;

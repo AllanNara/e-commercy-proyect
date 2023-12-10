@@ -5,6 +5,7 @@ import useCart from "../../hooks/useCart";
 import { Order } from "../../services";
 import { doc } from "firebase/firestore";
 import firestoreInstance from "../../services/firebase.config";
+import useStore from "../../hooks/useStore";
 
 export default function Checkout() {
 	const fieldsForm = ["email", "phone", "name", "emailConfirm"];
@@ -25,6 +26,7 @@ export default function Checkout() {
 	const [orderId, setOrderId] = useState(null);
 	const { getCart, clearCart } = useCart();
 	const { cart, total_to_pay, total_items } = getCart();
+	const { refresh } = useStore()
 
 	const createOrder = () => {
 		const newOrder = {
@@ -38,7 +40,7 @@ export default function Checkout() {
 		};
 		resetForm();
 		clearCart();
-		Order.create(newOrder).then((order) => setOrderId(order));
+		Order.create(newOrder).then((order) => setOrderId(order)).then(() => refresh());
 	};
 
 	if (orderId) {
