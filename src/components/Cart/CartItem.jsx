@@ -10,13 +10,14 @@ function CartItem({ item }) {
 	const { id, quantity, title, price, thumbnail, total } = item;
 	const { removeItem, updateItem, setRefresh } = useCart();
 	const { loading, productList } = useStore();
-
 	const availableStock = productList.find((prod) => prod.id === id)?.stock;
 
 	const updateQuantity = useCallback((quantity) => {
-		updateItem(id, quantity);
+		const updated = updateItem(id, quantity);
 		setRefresh(true);
-	}, []);
+		return updated
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [setRefresh, id]); 
 
 	return (
 		<li
@@ -49,7 +50,7 @@ function CartItem({ item }) {
 					<span>No hay unidades diponibles</span>
 				)}
 				<Counter
-					initial={availableStock ? quantity : 0}
+					initial={quantity}
 					maximum={availableStock}
 					minimum={1}
 					cb={updateQuantity}

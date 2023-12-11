@@ -4,11 +4,6 @@ export default class CartStorage {
 		this.setList = setList;
 	}
 
-	_saveCart = () => {
-		localStorage.setItem("cartSaved", JSON.stringify(this.products, null, 2));
-		this.setList(this.products);
-	};
-
 	_isInCart = (itemId) => {
 		return this.products.some((item) => item.id === itemId);
 	};
@@ -24,8 +19,7 @@ export default class CartStorage {
 			quantity,
 			total: Number((price * quantity).toFixed(2)),
 		};
-		this.products = [...this.products, newProduct];
-		this._saveCart();
+		this.setList((list) => [...list, newProduct])
 		return id;
 	};
 
@@ -34,25 +28,26 @@ export default class CartStorage {
 		const itemUpdated = this.products.find((item) => item.id === itemId);
 		itemUpdated.quantity = quantity;
 		itemUpdated.total = Number((itemUpdated.price * quantity).toFixed(2));
-		this._saveCart();
+		this.setList(list => {
+			const itemUpdated = list.find((item) => item.id === itemId);
+			itemUpdated.quantity = quantity;
+			itemUpdated.total = Number((itemUpdated.price * quantity).toFixed(2));
+			return list
+		})
 		return quantity;
 	};
 
 	removeItem = (itemId) => {
 		if (!this._isInCart(itemId)) return null;
-		this.products = this.products.filter((item) => item.id !== itemId);
-		this._saveCart();
+		this.setList(list => list.filter((item => item.id !== itemId)))
 		return itemId;
 	};
 
-	clearCart = () => {
-		this.products = [];
-		this._saveCart();
-	};
+	clearCart = () => this.setList([]);
 
 	getCart = () => {
 		return {
-			cart: this.products,
+			cart: this.products.sort((a, b) => a.grade - b.grade),
 			total_items: this.products.reduce((acc, curr) => acc + curr.quantity, 0),
 			total_to_pay: Number(
 				this.products.reduce((acc, curr) => acc + curr.total, 0).toFixed(2)

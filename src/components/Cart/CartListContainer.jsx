@@ -1,15 +1,10 @@
 import CartList from "./CartList";
 import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function CartListContainer() {
 	const { getCart } = useCart();
 	const { cart, total_items, total_to_pay } = getCart();
-
-	useEffect(() => {
-		console.log({cart})
-	}, [cart])
 	
 	return (
 		<div style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: 25}}>

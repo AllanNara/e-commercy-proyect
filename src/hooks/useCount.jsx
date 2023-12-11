@@ -8,7 +8,7 @@ const useCount = (initial, min, max) => {
 	const increment = () => count < max && setCount((prev) => prev + 1);
 	const reset = () => setCount(initial);
 
-	return { count, decrement, increment, reset };
+	return { count, decrement, increment, reset, setCount };
 };
 
 export default useCount

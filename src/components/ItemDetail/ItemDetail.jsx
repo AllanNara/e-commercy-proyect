@@ -8,7 +8,7 @@ import useCart from "../../hooks/useCart";
 function ItemDetail({ item }) {
 	const { title, price, stock, status, description, category, thumbnail, id } = item;
 	const [quantity, setQuantity] = useState();
-	const { addToCart } = useCart();
+	const { addToCart, setRefresh } = useCart();
 	const [sendQuantity, setSendQuantity] = useState(false)
 
 	const handleOnAdd = () => {
@@ -17,6 +17,7 @@ function ItemDetail({ item }) {
 			title, price, thumbnail, id
 		}
 		addToCart(item, quantity);
+		setRefresh(false)
 		setSendQuantity(true)
 	};
 

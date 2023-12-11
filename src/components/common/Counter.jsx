@@ -9,9 +9,9 @@ import { useEffect } from "react";
 function Counter({ initial, minimum, maximum, cb }) {
 	const { count, decrement, increment } = useCount(initial, minimum, maximum);
 
-  useEffect(() => {
-    cb && cb(count)
-  },[count, cb])
+	useEffect(() => {
+		cb(count)
+	}, [count, cb]);
 
 	return (
 		<Box
@@ -41,9 +41,9 @@ function Counter({ initial, minimum, maximum, cb }) {
 
 Counter.propTypes = {
 	initial: PropTypes.number,
-  minimum: PropTypes.number,
-  maximum: PropTypes.number,
-  cb: PropTypes.func
+	minimum: PropTypes.number,
+	maximum: PropTypes.number,
+	cb: PropTypes.func,
 };
 
 export default Counter;
