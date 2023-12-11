@@ -6,6 +6,8 @@ import { Order } from "../../services";
 import { doc } from "firebase/firestore";
 import firestoreInstance from "../../services/firebase.config";
 import useStore from "../../hooks/useStore";
+import Brief from "./Brief";
+import { Container, Grid } from "@mui/material";
 
 export default function Checkout() {
 	const fieldsForm = ["email", "phone", "name", "emailConfirm"];
@@ -48,6 +50,13 @@ export default function Checkout() {
 	}
 
 	return (
-		<CheckoutForm {...{ formData, inputChange, errors, validateForm, createOrder }} />
+		<Container sx={{display: "flex", flexDirection: "row", mt: 5}}>
+			<Grid sx={{width: "50%"}}>
+				<Brief { ...{ cart, total_to_pay, total_items} }/>
+			</Grid>
+			<Grid sx={{width: "40%"}}>
+				<CheckoutForm {...{ formData, inputChange, errors, validateForm, createOrder }} />
+			</Grid>
+		</Container>
 	);
 }
