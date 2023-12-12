@@ -14,8 +14,7 @@ export const CartProvider = ({ children }) => {
 	const [refresh, setRefresh] = useState(false);
 
 	const cartStorage = new CartStorage(cartList, setCartList);
-	const { addToCart, clearCart, getCart, products, removeItem, setList, updateItem } =
-		cartStorage;
+	const { addToCart, clearCart, getCart, removeItem, updateItem } = cartStorage;
 
 	useEffect(() => {
 		refresh && setRefresh(false);
@@ -30,12 +29,10 @@ export const CartProvider = ({ children }) => {
 			value={{
 				addToCart,
 				clearCart,
-				getCart,
-				products,
 				removeItem,
-				setList,
 				updateItem,
 				setRefresh,
+				...getCart(),
 			}}
 		>
 			{children}

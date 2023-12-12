@@ -1,11 +1,27 @@
+import { Box, Typography } from "@mui/material";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder }) {
-
-	const handleConfirm = (e) => {
-		e.preventDefault();
-		validateForm() && createOrder()
-	};
+function CheckoutForm({ formData, inputChange, errors, createOrder, user }) {
+	if (!user) {
+		return (
+				<Box>
+					<Typography id="modal-modal-title" variant="h6" component="h2">
+						Para seguir adelante con la compra {" "}
+						<Link to={"/login"} >
+							inicie sesion 
+						</Link> {" "}
+							con su cuenta
+					</Typography>
+					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+						¿Nuevo en la pagína? {" "}
+						<Link to="/register">
+							Registrate ahora
+						</Link>
+					</Typography>
+				</Box>
+		);
+	}
 
 	return (
 		<>
@@ -19,7 +35,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 				}}
 			>
 				<form
-					onSubmit={handleConfirm}
+					onSubmit={createOrder}
 					style={{
 						display: "flex",
 						flexDirection: "column",
@@ -159,7 +175,7 @@ function CheckoutForm({ formData, inputChange, errors, validateForm, createOrder
 						<input
 							type="submit"
 							value="Continuar con la compra"
-							style={{ padding: "2px 20px 2px 20px", marginTop: 15}}
+							style={{ padding: "2px 20px 2px 20px", marginTop: 15 }}
 						/>
 					</div>
 				</form>
@@ -172,8 +188,8 @@ CheckoutForm.propTypes = {
 	inputChange: PropTypes.func.isRequired,
 	formData: PropTypes.object.isRequired,
 	errors: PropTypes.object,
-	validateForm: PropTypes.func,
-	createOrder: PropTypes.func.isRequired
+	createOrder: PropTypes.func.isRequired,
+	user: PropTypes.any,
 };
 
 export default CheckoutForm;

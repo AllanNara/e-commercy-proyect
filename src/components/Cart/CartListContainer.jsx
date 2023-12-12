@@ -3,8 +3,7 @@ import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
 
 export default function CartListContainer() {
-	const { getCart } = useCart();
-	const { cart, total_items, total_to_pay } = getCart();
+	const { cart, total_items, total_to_pay } = useCart();
 	
 	return (
 		<div style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: 25}}>

@@ -5,8 +5,7 @@ import useCart from "../../hooks/useCart";
 import PropTypes from 'prop-types'
 
 function CartWidget({ load = false }) {
-	const { getCart } = useCart()
-	const { total_items } = getCart()
+	const { total_items } = useCart()
 
 	return (
 		<IconButton sx={{margin: `0 35px`, visibility: total_items ? "" : "hidden"}}>

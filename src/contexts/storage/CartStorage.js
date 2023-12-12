@@ -25,9 +25,6 @@ export default class CartStorage {
 
 	updateItem = (itemId, quantity) => {
 		if (!this._isInCart(itemId)) return null;
-		const itemUpdated = this.products.find((item) => item.id === itemId);
-		itemUpdated.quantity = quantity;
-		itemUpdated.total = Number((itemUpdated.price * quantity).toFixed(2));
 		this.setList(list => {
 			const itemUpdated = list.find((item) => item.id === itemId);
 			itemUpdated.quantity = quantity;
@@ -49,9 +46,7 @@ export default class CartStorage {
 		return {
 			cart: this.products.sort((a, b) => a.grade - b.grade),
 			total_items: this.products.reduce((acc, curr) => acc + curr.quantity, 0),
-			total_to_pay: Number(
-				this.products.reduce((acc, curr) => acc + curr.total, 0).toFixed(2)
-			),
+			total_to_pay: Number(this.products.reduce((acc, curr) => acc + curr.total, 0).toFixed(2)),
 		};
 	};
 }

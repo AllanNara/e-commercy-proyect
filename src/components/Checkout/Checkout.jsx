@@ -8,30 +8,24 @@ import firestoreInstance from "../../services/firebase.config";
 import useStore from "../../hooks/useStore";
 import Brief from "./Brief";
 import { Container, Grid } from "@mui/material";
+import { checkErrors } from "./utils";
 
-export default function Checkout() {
-	const fieldsForm = ["email", "phone", "name", "emailConfirm"];
-	const verifyFields = ({ email, phone, name, emailConfirm }) => {
-		const err = {};
-		if (!email.length) err.email = "Falta email";
-		if (!emailConfirm.length) err.emailConfirm = "Falta confirmar email";
-		if(email !== emailConfirm) err.emailConfirm = "Los correos no coinciden"
-		if (!phone.length) err.phone = "Falta telefono";
-		if (!name.length) err.name = "Falta nombre";
-		return err;
-	};
-	const { formData, inputChange, resetForm, errors, validateForm } = useForm(
-		fieldsForm,
-		verifyFields
-	);
+import PropTypes from 'prop-types'
+
+Checkout.propTypes = {
+	user: PropTypes.any
+}
+
+export default function Checkout({ user }) {
+	const fieldsForm = ["first_name", "last_name", "phone", "address"];
+	const { formData, inputChange, resetForm, errors, validateForm } = useForm(fieldsForm, checkErrors);
 
 	const [orderId, setOrderId] = useState(null);
-	const { getCart, clearCart } = useCart();
-	const { cart, total_to_pay, total_items } = getCart();
-	const { refresh } = useStore()
+	const { cart, total_to_pay, total_items, clearCart } = useCart();
+	const { refresh } = useStore();
 
-	const createOrder = () => {
-		const newOrder = {
+	const buildNewOrder = () => {
+		const order = {
 			buyer: { ...formData },
 			items: cart.map(({ id, quantity }) => ({
 				product: doc(firestoreInstance, "/products/" + id),
@@ -40,9 +34,19 @@ export default function Checkout() {
 			total_to_pay,
 			total_items,
 		};
-		resetForm();
-		clearCart();
-		Order.create(newOrder).then((order) => setOrderId(order)).then(() => refresh());
+
+		resetForm() && clearCart();
+		return order
+	}
+
+	const createOrder = (e) => {
+		e.preventDefault();
+		if (!validateForm()) return;
+		const newOrder = buildNewOrder()
+		Order.create(newOrder)
+			.then((order) => setOrderId(order))
+			.catch((err) => console.log("Fatal error: ", err))
+			.finally(() => refresh());
 	};
 
 	if (orderId) {
@@ -50,12 +54,12 @@ export default function Checkout() {
 	}
 
 	return (
-		<Container sx={{display: "flex", flexDirection: "row", mt: 5}}>
-			<Grid sx={{width: "50%"}}>
-				<Brief { ...{ cart, total_to_pay, total_items} }/>
+		<Container sx={{ display: "flex", flexDirection: "row", mt: 5 }}>
+			<Grid sx={{ width: "50%" }}>
+				<Brief {...{ cart, total_to_pay, total_items }} />
 			</Grid>
-			<Grid sx={{width: "40%"}}>
-				<CheckoutForm {...{ formData, inputChange, errors, validateForm, createOrder }} />
+			<Grid sx={{ width: "40%" }}>
+				<CheckoutForm {...{ formData, inputChange, errors, createOrder, user }} />
 			</Grid>
 		</Container>
 	);

@@ -17,7 +17,7 @@ function ItemDetail({ item }) {
 			title, price, thumbnail, id
 		}
 		addToCart(item, quantity);
-		setRefresh(false)
+		setRefresh(true)
 		setSendQuantity(true)
 	};
 

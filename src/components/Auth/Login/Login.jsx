@@ -14,8 +14,7 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			if (validateForm()) {
-				const response = await signIn(formData.email, formData.password);
-				console.log({ response });
+				await signIn(formData.email, formData.password);
 			}
 		} catch (error) {
 			console.error(`Error al autenticar: ${error}`);
