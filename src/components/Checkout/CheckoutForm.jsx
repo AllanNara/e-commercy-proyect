@@ -8,11 +8,11 @@ function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} })
 		return (
 			<Box>
 				<Typography id="modal-modal-title" variant="h6" component="h2">
-					Para seguir adelante con la compra <Link to={"/login"}>inicie sesion</Link> con
+					Para seguir adelante con la compra <Link to={"/login"}><span style={{color: "cadetblue"}}>inicie sesion</span></Link> con
 					su cuenta
 				</Typography>
 				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-					¿Nuevo en la pagína? <Link to="/register">Registrate ahora</Link>
+					¿Nuevo en la pagína? <Link to="/register"><span style={{color: "cadetblue"}}>Registrate ahora</span></Link>
 				</Typography>
 			</Box>
 		);

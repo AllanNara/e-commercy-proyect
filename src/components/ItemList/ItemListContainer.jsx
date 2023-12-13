@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { Typography, Container, Box } from "@mui/material";
+import { Typography, Box, Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Category, Product } from "../../services";
@@ -50,35 +50,37 @@ function ItemListContainer({ greeting = "Todas las categorías" }) {
 			sx={{
 				display: "flex",
 				flexDirection: "column",
-				bgcolor: "#f9f9f9",
 			}}
 		>
-				<Box sx={{
+			<Box
+				sx={{
 					bgcolor: "#ccc",
 					mb: 2.5,
-					mt: 0.5
-				}}>
-					<Typography
-						variant="h5"
-						sx={{
-							alignSelf: "stretch",
-							justifyContent: "center",
-							textAlign: "center",
-							fontFamily: "Playfair Display",
-							padding: 2,
-							textTransform: categoryKey && "capitalize",
-						}}
-					>
-						{categoryKey ? ` ${categoryKey}` : greeting}
-					</Typography>
-				</Box>
-						<Container>
+					mt: 0.5,
+				}}
+			>
+				<Typography
+					variant="h5"
+					sx={{
+						alignSelf: "stretch",
+						justifyContent: "center",
+						textAlign: "center",
+						fontFamily: "Playfair Display",
+						padding: 2,
+						textTransform: categoryKey && "capitalize",
+					}}
+				>
+					{categoryKey ? ` ${categoryKey}` : greeting}
+				</Typography>
+			</Box>
+			<Box>
 				{loading || (categoryKey && loadingCategory) ? (
 					<Spinner />
 				) : (
 					<ItemList items={categoryKey ? productsByCategory : productList} />
 				)}
-			</Container>
+			</Box>
+			<Pagination count={10} size="large" sx={{alignSelf: "center", marginTop: 5}}/>
 		</Box>
 	);
 }

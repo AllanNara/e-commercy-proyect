@@ -33,14 +33,15 @@ export default function NavBar({ user, logout, load = false }) {
 	}, [showCategories]);
 
 	return (
-		<>
+		<div className="body-body">
 			<Box
 				sx={{
 					bgcolor: "#f9f9f9",
-					borderStyle: "solid",
-					borderColor: "#668",
+					borderStyle: "double",
+					borderColor: "#efefef",
 					padding: 1,
 				}}
+				className="navbar"
 			>
 				<Container>
 					<Grid container justifyContent="space-between" alignItems="center">
@@ -104,7 +105,9 @@ export default function NavBar({ user, logout, load = false }) {
 				/>
 			</Box>
 
-			<Outlet />
-		</>
+			<Box className="main-box">
+				<Outlet />
+			</Box>
+		</div>
 	);
 }

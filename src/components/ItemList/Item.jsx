@@ -19,7 +19,7 @@ function Item({ item }) {
 	return (
 		<Box sx={{ borderRadius: 1 }}>
 			<Link to={`/item/${id}`}>
-				<Card sx={{ maxWidth: 345, width: 345, height: 290, maxHeight: 345 }}>
+				<Card sx={{ maxWidth: 350, width: 350, height: 290, maxHeight: 345 }}>
 					<Typography
 						sx={{
 							position: "absolute",

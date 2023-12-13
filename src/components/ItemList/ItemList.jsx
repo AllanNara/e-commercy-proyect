@@ -1,29 +1,27 @@
 import PropTypes from "prop-types";
 import Item from "./Item";
+import { Box } from "@mui/material";
 
 function ItemList({ items }) {
 	return (
-		<div
-			style={{
+		<Box
+			sx={{
+				marginTop: 2,
 				display: "flex",
 				flexWrap: "wrap",
 				justifyContent: "center",
-				alignItems: "center",
-				width: "100%",
-				gap: 25,
-				marginBottom: "50px"
+				gap: 5,
 			}}
 		>
 			{items.map((item) => (
-				<Item key={item.id} item={item}/>
+				<Item key={item.id} item={item} />
 			))}
-		</div>
+		</Box>
 	);
 }
 
 ItemList.propTypes = {
 	items: PropTypes.array.isRequired,
 };
-
 
 export default ItemList;
