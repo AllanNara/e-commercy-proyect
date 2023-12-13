@@ -10,6 +10,7 @@ import Register from '../Auth/Register/Register'
 import PublicRoutes from './PublicRoutes'
 import useAuth from '../../hooks/useAuth'
 import Spinner from '../common/Spinner'
+import CheckoutCompleted from '../Checkout/CheckoutCompleted'
 
 export default function AppRoutes() {
   const { logout, user, loadingUser } = useAuth();
@@ -33,6 +34,7 @@ export default function AppRoutes() {
         <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
         <Route exact path="/cart" element={<CartListContainer />} />
         <Route exact path="/cart/checkout" element={<Checkout user={user} />} />
+        <Route exact path="/cart/checkout/completed" element={<CheckoutCompleted />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

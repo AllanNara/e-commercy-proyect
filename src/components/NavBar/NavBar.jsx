@@ -1,13 +1,18 @@
+import { Category } from "../../services/index.js";
+import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import AccountWidget from "./AccountWidget.jsx";
+import BeenhereIcon from "@mui/icons-material/Beenhere";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Brand from "./Brand.jsx";
 import CartWidget from "./CartWidget.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Category } from "../../services/index.js";
-import Brand from "./Brand.jsx";
+import Container from "@mui/material/Container";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
 import PropTypes from "prop-types";
+import { Tooltip } from "@mui/material";
 
 NavBar.propTypes = {
 	user: PropTypes.any,
@@ -18,7 +23,6 @@ NavBar.propTypes = {
 export default function NavBar({ user, logout, load = false }) {
 	const [categoryList, setCategoryList] = useState([]);
 	const [showCategories, setShowCategories] = useState(false);
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (showCategories) {
@@ -32,9 +36,10 @@ export default function NavBar({ user, logout, load = false }) {
 		<>
 			<Box
 				sx={{
-					bgcolor: "antiquewhite",
+					bgcolor: "#f9f9f9",
 					borderStyle: "solid",
-					borderColor: "burlywood",
+					borderColor: "#668",
+					padding: 1,
 				}}
 			>
 				<Container>
@@ -42,28 +47,61 @@ export default function NavBar({ user, logout, load = false }) {
 						<Link to={`/`}>
 							<Brand />
 						</Link>
-						<CategoryMenu
-							categories={categoryList}
-							setShow={setShowCategories}
-							show={showCategories}
-						/>
-						{load ? (
-							<span>. . .</span>
-						) : !user ? (
-							<>
-								<Link to={`/login`}>Ingresar</Link>
-								<Link to={`/register`}>Registrarse</Link>
-							</>
-						) : (
-							<button onClick={() => logout().then(() => navigate("/"))}>
-								Cerrar sesion
-							</button>
-						)}
-						<Link to={`/cart`}>
-							<CartWidget load={load} />
-						</Link>
+
+						<Box sx={{ display: "flex", alignItems: "center", gap: 2.5 }}>
+							<Link to={`/orders`}>
+								<Tooltip title="Mis compras">
+									<IconButton size="medium" sx={{ visibility: user ? "" : "hidden" }}>
+										<BeenhereIcon
+											sx={{
+												":hover": { color: "chocolate" },
+												width: 30,
+												height: 30,
+												color: "#434343",
+											}}
+										/>
+									</IconButton>
+								</Tooltip>
+							</Link>
+
+							<Link to={`/favorites`}>
+								<Tooltip title="Mis favoritos">
+									<IconButton size="medium" sx={{ visibility: user ? "" : "hidden" }}>
+										<FavoriteIcon
+											sx={{
+												":hover": { color: "chocolate" },
+												width: 30,
+												height: 30,
+												color: "#434343",
+											}}
+										/>
+									</IconButton>
+								</Tooltip>
+							</Link>
+
+							<Link to={!user ? "/login" : "/"}>
+								<AccountWidget {...{ logout, user }} />
+							</Link>
+							<Link to={`/cart`}>
+								<CartWidget load={load} />
+							</Link>
+						</Box>
 					</Grid>
 				</Container>
+			</Box>
+			<Box
+				sx={{
+					bgcolor: "#222",
+					padding: 1,
+					display: "flex",
+					justifyContent: "center",
+				}}
+			>
+				<CategoryMenu
+					categories={categoryList}
+					setShow={setShowCategories}
+					show={showCategories}
+				/>
 			</Box>
 
 			<Outlet />

@@ -1,185 +1,86 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, FormControl, Button, Paper } from "@mui/material";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import InputForm from "../common/InputForm";
 
-function CheckoutForm({ formData, inputChange, errors, createOrder, user }) {
+function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} }) {
 	if (!user) {
 		return (
-				<Box>
-					<Typography id="modal-modal-title" variant="h6" component="h2">
-						Para seguir adelante con la compra {" "}
-						<Link to={"/login"} >
-							inicie sesion 
-						</Link> {" "}
-							con su cuenta
-					</Typography>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						¿Nuevo en la pagína? {" "}
-						<Link to="/register">
-							Registrate ahora
-						</Link>
-					</Typography>
-				</Box>
+			<Box>
+				<Typography id="modal-modal-title" variant="h6" component="h2">
+					Para seguir adelante con la compra <Link to={"/login"}>inicie sesion</Link> con
+					su cuenta
+				</Typography>
+				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+					¿Nuevo en la pagína? <Link to="/register">Registrate ahora</Link>
+				</Typography>
+			</Box>
 		);
 	}
 
 	return (
 		<>
-			<div
-				style={{
+			<Box sx={{display: "flex", flexDirection: "column"}}>
+			<Typography variant="body2" sx={{ fontSize: 19, alignSelf: "flex-start", mb: 1}}>
+				Esta comprando como: <span style={{ color: "#33f" }}>{user.email}</span>...
+			</Typography>
+			<Button sx={{alignSelf: "flex-end"}}> Cerrar sesion</Button>
+			</Box>
+			<Paper
+				sx={{
+					backgroundColor: "#eee",
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",
-					height: "50vh",
-					justifyContent: "center",
+					p: "20px 0",
 				}}
 			>
-				<form
-					onSubmit={createOrder}
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						gap: "15px",
-						alignItems: "flex-start",
-					}}
-				>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							flexWrap: "wrap",
-							width: "auto",
-							gap: 3,
-						}}
-					>
-						<label style={{ width: "100%" }} htmlFor="nameField">
-							Nombre:
-						</label>
-						<input
-							type="text"
-							name="name"
-							id="nameField"
-							value={formData.name}
-							onChange={inputChange}
+				<Typography variant="h5" sx={{ mb: 3, alignSelf: "flex-start", ml: 4 }}>
+					Complete sus datos:
+				</Typography>
+				<form onSubmit={createOrder} autoComplete="off">
+					<FormControl sx={{ gap: 1.2 }}>
+						<InputForm
+							label="Nombre"
+							error={errors.first_name}
+							data={formData.first_name}
+							name="first_name"
+							{...{ inputChange }}
 						/>
-						{errors && errors.name && (
-							<span
-								style={{
-									color: "red",
-									flexGrow: 1,
-									alignSelf: "center",
-									textAlign: "left",
-								}}
-							>
-								*{errors.name}
-							</span>
-						)}
-					</div>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							flexWrap: "wrap",
-							width: "auto",
-							gap: 3,
-						}}
-					>
-						<label style={{ width: "100%" }} htmlFor="emailField">
-							Correo electronico:
-						</label>
-						<input
-							type="email"
-							name="email"
-							id="emailField"
-							value={formData.email}
-							onChange={inputChange}
+						<InputForm
+							label="Apellido"
+							error={errors.last_name}
+							data={formData.last_name}
+							name="last_name"
+							{...{ inputChange }}
 						/>
-						{errors && errors.email && (
-							<span
-								style={{
-									color: "red",
-									flexGrow: 1,
-									alignSelf: "center",
-									textAlign: "left",
-								}}
-							>
-								*{errors.email}
-							</span>
-						)}
-					</div>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							flexWrap: "wrap",
-							width: "auto",
-							gap: 3,
-						}}
-					>
-						<label style={{ width: "100%" }} htmlFor="emailConfirmField">
-							Confirmar correo electronico:
-						</label>
-						<input
-							type="email"
-							name="emailConfirm"
-							id="emailConfirmField"
-							value={formData.emailConfirm}
-							onChange={inputChange}
+						<InputForm
+							label="Dirección"
+							error={errors.address}
+							data={formData.address}
+							name="address"
+							{...{ inputChange }}
 						/>
-						{errors && errors.emailConfirm && (
-							<span
-								style={{
-									color: "red",
-									flexGrow: 1,
-									alignSelf: "center",
-									textAlign: "left",
-								}}
-							>
-								*{errors.emailConfirm}
-							</span>
-						)}
-					</div>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							flexWrap: "wrap",
-							width: "auto",
-							gap: 3,
-						}}
-					>
-						<label style={{ width: "100%" }} htmlFor="phoneField">
-							Telefono:
-						</label>
-						<input
-							type="tel"
+						<InputForm
+							label="Teléfono"
+							error={errors.phone}
+							data={formData.phone}
 							name="phone"
-							id="phoneField"
-							value={formData.phone}
-							onChange={inputChange}
+							{...{ inputChange }}
 						/>
-						{errors && errors.phone && (
-							<span
-								style={{
-									color: "red",
-									flexGrow: 1,
-									alignSelf: "center",
-									textAlign: "left",
-								}}
-							>
-								*{errors.phone}
-							</span>
-						)}
-					</div>
-					<div>
-						<input
+						<Button
+							variant="outlined"
+							sx={{ width: 230, p: 1, mt: 2 }}
+							disabled={!!errors.length}
 							type="submit"
-							value="Continuar con la compra"
-							style={{ padding: "2px 20px 2px 20px", marginTop: 15 }}
-						/>
-					</div>
+						>
+							<Typography variant="overline" fontWeight={400} fontSize={13}>
+								Confirmar compra
+							</Typography>
+						</Button>
+					</FormControl>
 				</form>
-			</div>
+			</Paper>
 		</>
 	);
 }

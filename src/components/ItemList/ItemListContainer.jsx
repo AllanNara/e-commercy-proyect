@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Category, Product } from "../../services";
@@ -40,35 +40,38 @@ function ItemListContainer({ greeting = "" }) {
 			}
 		}
 
-		categoryKey && fetchListProductsByCategory()
+		categoryKey && fetchListProductsByCategory();
 
-		return () => setProductsByCategory([])
+		return () => setProductsByCategory([]);
 	}, [categoryKey, state]);
 
-
 	return (
-		<Container
+		<Box
 			sx={{
 				display: "flex",
 				flexDirection: "column",
+				bgcolor: "#f9f9f9",
 			}}
 		>
-			<Typography
-				variant="h4"
-				sx={{
-					alignSelf: "stretch",
-					justifyContent: "center",
-					textAlign: "center",
-					padding: 3,
-				}}
-			>
-				{greeting}
-			</Typography>
-			{loading || (categoryKey && loadingCategory) ? 
-			(<Spinner />) : 
-			(<ItemList items={categoryKey ? productsByCategory : productList} />) 
-			}
-		</Container>
+			<Container>
+				<Typography
+					variant="h4"
+					sx={{
+						alignSelf: "stretch",
+						justifyContent: "center",
+						textAlign: "center",
+						padding: 3,
+					}}
+				>
+					{greeting}
+				</Typography>
+				{loading || (categoryKey && loadingCategory) ? (
+					<Spinner />
+				) : (
+					<ItemList items={categoryKey ? productsByCategory : productList} />
+				)}
+			</Container>
+		</Box>
 	);
 }
 

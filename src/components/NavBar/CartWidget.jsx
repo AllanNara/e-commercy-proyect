@@ -1,26 +1,32 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, IconButton } from "@mui/material";
+import { Badge, IconButton, Tooltip } from "@mui/material";
 import useCart from "../../hooks/useCart";
 
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 function CartWidget({ load = false }) {
-	const { total_items } = useCart()
+	const { total_items } = useCart();
 
 	return (
-		<IconButton sx={{margin: `0 35px`, visibility: total_items ? "" : "hidden"}}>
-			<Badge
-				badgeContent={load ? 0 : total_items}
-				color="error"
-			>
-				<ShoppingCartIcon color="action" sx={{ ":hover": { color: "chocolate" } }} />
-			</Badge>
-		</IconButton>
+		<Tooltip title="Mi carrito">
+			<IconButton sx={{ visibility: total_items ? "" : "hidden" }}>
+				<Badge badgeContent={load ? 0 : total_items} color="error">
+					<ShoppingCartIcon
+						sx={{
+							":hover": { color: "chocolate" },
+							width: 30,
+							height: 30,
+							color: "#434343",
+						}}
+					/>
+				</Badge>
+			</IconButton>
+		</Tooltip>
 	);
 }
 
 CartWidget.propTypes = {
-	load: PropTypes.bool
-}
+	load: PropTypes.bool,
+};
 
 export default CartWidget;

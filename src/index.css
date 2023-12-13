@@ -1,3 +1,7 @@
-.notify {
-  color: red;
+a:visited,
+a:hover,
+a:active,
+a:link {
+  color: inherit;
+	text-decoration: none;
 }

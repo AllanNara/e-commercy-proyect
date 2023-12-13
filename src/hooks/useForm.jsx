@@ -9,7 +9,7 @@ const useForm = (fields, verifyFields) => {
 		}, {})
 	);
 
-	const inputChange = ({ target: { name, value }}) =>{
+	const inputChange = ({ target: { name, value }}) => {
 		if(!name) throw new Error(`Internal error, input: ${{name}}`);
 		setFormData({ ...formData, [name]: value });
 }

@@ -14,8 +14,7 @@ export default function Register() {
     e.preventDefault()
     try {
       if(validateForm()) {
-        const response = await register(formData.email, formData.password);
-        console.log({response})
+        await register(formData.email, formData.password);
       }
     } catch(error) {
       console.error(`Error al autenticar: ${error}`)
