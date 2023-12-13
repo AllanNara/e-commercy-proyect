@@ -25,7 +25,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route element={<NavBar user={user} logout={logout}/>}>
-        <Route exact path="/" element={<ItemListContainer greeting={"¡Bienvenido!"} />} />
+        <Route exact path="/" element={<ItemListContainer />} />
         <Route element={<PublicRoutes redirectTo='/' user={user}/>}>
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />

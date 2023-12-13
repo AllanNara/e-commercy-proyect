@@ -11,7 +11,7 @@ ItemListContainer.propTypes = {
 	greeting: PropTypes.string,
 };
 
-function ItemListContainer({ greeting = "" }) {
+function ItemListContainer({ greeting = "Todas las categorías" }) {
 	const { productList, loading } = useStore();
 	const [productsByCategory, setProductsByCategory] = useState([]);
 	const [loadingCategory, setLoadingCategory] = useState(false);
@@ -53,18 +53,26 @@ function ItemListContainer({ greeting = "" }) {
 				bgcolor: "#f9f9f9",
 			}}
 		>
-			<Container>
-				<Typography
-					variant="h4"
-					sx={{
-						alignSelf: "stretch",
-						justifyContent: "center",
-						textAlign: "center",
-						padding: 3,
-					}}
-				>
-					{greeting}
-				</Typography>
+				<Box sx={{
+					bgcolor: "#ccc",
+					mb: 2.5,
+					mt: 0.5
+				}}>
+					<Typography
+						variant="h5"
+						sx={{
+							alignSelf: "stretch",
+							justifyContent: "center",
+							textAlign: "center",
+							fontFamily: "Playfair Display",
+							padding: 2,
+							textTransform: categoryKey && "capitalize",
+						}}
+					>
+						{categoryKey ? ` ${categoryKey}` : greeting}
+					</Typography>
+				</Box>
+						<Container>
 				{loading || (categoryKey && loadingCategory) ? (
 					<Spinner />
 				) : (

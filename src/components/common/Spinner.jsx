@@ -14,7 +14,7 @@ function Spinner({ msg = "Cargando contenido...", styles = {}, size = 90 }) {
 	};
 	return (
 		<Container sx={st}>
-			<CircularProgress size={size} />
+			<CircularProgress size={size} color="inherit" />
 			<Typography variant="h5">{msg}</Typography>
 		</Container>
 	);
