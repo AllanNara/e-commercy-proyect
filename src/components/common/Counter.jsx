@@ -6,12 +6,12 @@ import useCount from "../../hooks/useCount";
 import { Box, Button, Typography } from "@mui/material";
 import { useEffect } from "react";
 
-function Counter({ initial, minimum, maximum, cb }) {
+function Counter({ initial, minimum, maximum, cb, disabled = false }) {
 	const { count, decrement, increment } = useCount(initial, minimum, maximum);
 
 	useEffect(() => {
-		cb(count)
-	}, [count, cb]);
+		!disabled && cb(count)
+	}, [count, cb, disabled]);
 
 	return (
 		<Box
@@ -26,13 +26,13 @@ function Counter({ initial, minimum, maximum, cb }) {
 				justifyContent: "space-around",
 			}}
 		>
-			<Button onClick={decrement}>
+			<Button disabled={disabled} onClick={decrement}>
 				<RemoveIcon fontSize="small" />
 			</Button>
-			<Typography component={"span"} margin={"auto"}>
+			<Typography component={"span"} margin={"auto"} color={disabled ? "grey" : "inherit"}>
 				{maximum ? count : 0}
 			</Typography>
-			<Button onClick={increment}>
+			<Button disabled={disabled} onClick={increment}>
 				<AddIcon fontSize="small" />
 			</Button>
 		</Box>
@@ -44,6 +44,7 @@ Counter.propTypes = {
 	minimum: PropTypes.number,
 	maximum: PropTypes.number,
 	cb: PropTypes.func,
+	disabled: PropTypes.bool
 };
 
 export default Counter;

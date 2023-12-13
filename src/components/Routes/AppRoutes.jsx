@@ -25,7 +25,7 @@ export default function AppRoutes() {
 		);
 
 	return (
-		<main>
+		<>
 			<Routes>
 				<Route element={<NavBar user={user} logout={logout} />}>
 					<Route exact path="/" element={<ItemListContainer />} />
@@ -42,6 +42,6 @@ export default function AppRoutes() {
 				</Route>
 			</Routes>
 			<Footer />
-		</main>
+		</>
 	);
 }

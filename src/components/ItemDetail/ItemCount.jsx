@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import {
-	Box,
 	Button,
-	Container,
 	Dialog,
 	DialogActions,
 	DialogContent,
@@ -11,50 +9,80 @@ import {
 	DialogTitle,
 	Grid,
 	IconButton,
+	Paper,
 	Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Counter from "../common/Counter";
+import { Link } from "react-router-dom";
 
 function ItemCount({ stock, initial, onAdd, changeQuantity, quantity }) {
 	const [notification, setNotification] = useState(false);
+	const [sendQuantity, setSendQuantity] = useState(false);
 
 	const handleOpen = () => setNotification(true);
-	
+
 	const handleClose = () => {
-		onAdd()
+		onAdd();
 		setNotification(false);
+		setSendQuantity(true);
 	};
 
 	return (
-		<Container>
-			<Grid container flexDirection={"column"} gap={2} alignItems={"center"}>
-				<Grid item>
-					<Box
-						sx={{
-							backgroundColor: "#eee",
-							height: 100,
-							width: 270,
-						}}
+		<Grid container flexDirection={"column"} gap={2.5} display={"flex"}>
+			<Grid item alignSelf={"flex-start"}>
+				<Paper
+					sx={{
+						backgroundColor: "#eee",
+						height: 90,
+						width: 270,
+						display: "flex",
+						flexDirection: "column",
+					}}
+				>
+					<Typography
+						variant="body1"
+						component={"p"}
+						color={"#666"}
+						fontWeight={600}
+						pt={2}
+						fontSize={15}
+						textAlign={"center"}
 					>
-						<Typography
-							variant="body1"
-							component={"p"}
-							color={"#666"}
-							fontWeight={600}
-							height={"57%"}
-							p={1.5}
-							fontSize={14}
-						>
-							{stock ? `${stock} Unidades disponibles` : "No hay unidades disponibles"}
-						</Typography>
-						<Counter initial={initial} maximum={stock} minimum={1} cb={changeQuantity}/>
-					</Box>
-				</Grid>
-				<Grid item>
+						{sendQuantity
+							? `(${quantity}) Productos agregados`
+							: stock
+							? `${stock} Unidades disponibles`
+							: "No hay unidades disponibles"}
+					</Typography>
+					<Counter
+						initial={initial}
+						maximum={stock}
+						minimum={1}
+						cb={changeQuantity}
+						disabled={sendQuantity}
+					/>
+				</Paper>
+			</Grid>
+
+			<Grid item sx={{ alignSelf: "stretch" }}>
+				{sendQuantity ? (
+					<Link to={"/cart"} style={{ color: "inherit", textDecoration: "inherit" }}>
+						<Button variant="outlined" sx={{ width: "100%", p: 1 }}>
+							<Typography
+								textTransform="initial"
+								variant="body1"
+								fontWeight={200}
+								fontSize={14}
+							>
+								Finalizar compra
+							</Typography>
+						</Button>
+					</Link>
+				) : (
 					<Button
 						variant="outlined"
-						sx={{ width: 230, p: 1 }}
+						sx={{ width: "100%", p: 1 }}
 						onClick={handleOpen}
 						disabled={!stock}
 					>
@@ -67,22 +95,22 @@ function ItemCount({ stock, initial, onAdd, changeQuantity, quantity }) {
 							Agregar al carrito
 						</Typography>
 					</Button>
-					<Dialog open={notification} onClose={handleClose}>
-						<DialogTitle>Producto/s agregado/s</DialogTitle>
-						<DialogContent>
-							<DialogContentText>
-								Has agregado con exito {quantity} producto/s
-							</DialogContentText>
-						</DialogContent>
-						<DialogActions>
-							<IconButton onClick={handleClose} autoFocus>
-								<CloseIcon />
-							</IconButton>
-						</DialogActions>
-					</Dialog>
-				</Grid>
+				)}
+				<Dialog open={notification} onClose={handleClose}>
+					<DialogTitle>Producto/s agregado/s</DialogTitle>
+					<DialogContent>
+						<DialogContentText>
+							Has agregado con exito {quantity} producto/s
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<IconButton onClick={handleClose} autoFocus>
+							<CloseIcon />
+						</IconButton>
+					</DialogActions>
+				</Dialog>
 			</Grid>
-		</Container>
+		</Grid>
 	);
 }
 
