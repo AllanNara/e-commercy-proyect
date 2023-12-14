@@ -36,7 +36,7 @@ export default function AppRoutes() {
 					<Route exact path="/categories/:categoryKey" element={<ItemListContainer />} />
 					<Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
 					<Route exact path="/cart" element={<CartListContainer />} />
-					<Route exact path="/cart/checkout" element={<Checkout user={user} />} />
+					<Route exact path="/cart/checkout" element={<Checkout user={user} logout={logout} />} />
 					<Route exact path="/cart/checkout/completed" element={<CheckoutCompleted />} />
 					<Route path="*" element={<PageNotFound />} />
 				</Route>

@@ -1,18 +1,32 @@
 import { Box, Typography, FormControl, Button, Paper } from "@mui/material";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../common/InputForm";
 
-function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} }) {
+function CheckoutForm({ formData, inputChange, createOrder, user, logout, errors = {} }) {
+	const navigate = useNavigate();
+
+	const logoutAndRedirect = () => {
+		logout().then(() => {
+			navigate("/");
+		});
+	};
+
 	if (!user) {
 		return (
 			<Box>
 				<Typography id="modal-modal-title" variant="h6" component="h2">
-					Para seguir adelante con la compra <Link to={"/login"}><span style={{color: "cadetblue"}}>inicie sesion</span></Link> con
-					su cuenta
+					Para seguir adelante con la compra{" "}
+					<Link to={"/login"}>
+						<span style={{ color: "cadetblue" }}>inicie sesion</span>
+					</Link>{" "}
+					con su cuenta
 				</Typography>
 				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-					¿Nuevo en la pagína? <Link to="/register"><span style={{color: "cadetblue"}}>Registrate ahora</span></Link>
+					¿Nuevo en la pagína?{" "}
+					<Link to="/register">
+						<span style={{ color: "cadetblue" }}>Registrate ahora</span>
+					</Link>
 				</Typography>
 			</Box>
 		);
@@ -20,11 +34,14 @@ function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} })
 
 	return (
 		<>
-			<Box sx={{display: "flex", flexDirection: "column"}}>
-			<Typography variant="body2" sx={{ fontSize: 19, alignSelf: "flex-start", mb: 1}}>
-				Esta comprando como: <span style={{ color: "#33f" }}>{user.email}</span>...
-			</Typography>
-			<Button sx={{alignSelf: "flex-end"}}> Cerrar sesion</Button>
+			<Box sx={{ display: "flex", flexDirection: "column", mt: -2.3}}>
+				<Typography variant="body2" sx={{ fontSize: 19, alignSelf: "flex-start", mb: 1 }}>
+					Esta comprando como: <span style={{ color: "#33f" }}>{user.email}</span>...
+				</Typography>
+				<Button onClick={logoutAndRedirect} sx={{ alignSelf: "flex-end" }}>
+					{" "}
+					Cerrar sesion
+				</Button>
 			</Box>
 			<Paper
 				sx={{
@@ -68,11 +85,7 @@ function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} })
 							name="phone"
 							{...{ inputChange }}
 						/>
-						<Button
-							variant="outlined"
-							sx={{ width: 230, p: 1, mt: 2 }}
-							type="submit"
-						>
+						<Button variant="outlined" sx={{ width: 230, p: 1, mt: 2 }} type="submit">
 							<Typography variant="overline" fontWeight={400} fontSize={13}>
 								Confirmar compra
 							</Typography>
@@ -89,6 +102,7 @@ CheckoutForm.propTypes = {
 	formData: PropTypes.object.isRequired,
 	errors: PropTypes.object,
 	createOrder: PropTypes.func.isRequired,
+	logout: PropTypes.func,
 	user: PropTypes.any,
 };
 

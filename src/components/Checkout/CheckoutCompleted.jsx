@@ -21,8 +21,8 @@ function CheckoutCompleted() {
 			}}
 		>
 			<CheckCircleOutlinedIcon color="success" sx={{ fontSize: 130 }} />
-			<Typography variant="h2">¡Gracias por tu compra!</Typography>
-			<Typography variant="h4">Tu numero de order es: {state.order}</Typography>
+			<Typography variant="h3" fontFamily={"Poppins"} >¡Gracias por tu compra!</Typography>
+			<Typography variant="h5">Tu numero de order es: {state.order}</Typography>
 		</Container>
 	);
 }
