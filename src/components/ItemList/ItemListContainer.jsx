@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { Typography, Box, Pagination } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Category, Product } from "../../services";
@@ -80,7 +80,7 @@ function ItemListContainer({ greeting = "Todas las categorías" }) {
 					<ItemList items={categoryKey ? productsByCategory : productList} />
 				)}
 			</Box>
-			<Pagination count={10} size="large" sx={{alignSelf: "center", marginTop: 5}}/>
+			{/* <Pagination count={10} size="large" sx={{alignSelf: "center", marginTop: 5}}/> */}
 		</Box>
 	);
 }

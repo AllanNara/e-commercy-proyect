@@ -1,6 +1,6 @@
 export const checkErrors = (to = "login") => {
 	return (formData) => {
-		const { email, password, checkPass } = formData;
+		const { email, password, checkPass, checkEmail } = formData;
 		const errors = {};
 
 		if (!email.trim().length) errors.email = "No se ingreso un correo";
@@ -11,10 +11,11 @@ export const checkErrors = (to = "login") => {
 
 		if (to === "register") {
 			if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/.test(password.trim()))
-				errors.password =
-					"La contraseña debe incluir al menos una letra mayuscula, una minuscula y un numero";
+				errors.password = "La contraseña debe incluir al menos una letra mayuscula, una minuscula y un numero";
 			if (password.trim() !== checkPass.trim())
 				errors.checkPass = "Las contraseñas no coinciden";
+			if (!checkEmail.trim().length) 
+				errors.checkEmail = "Los correos no coinciden";
 		}
 
 		return errors;

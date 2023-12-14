@@ -20,6 +20,13 @@ function ItemCount({ stock, initial, onAdd, changeQuantity, quantity }) {
 	const [notification, setNotification] = useState(false);
 	const [sendQuantity, setSendQuantity] = useState(false);
 
+	let msgCounter =
+		stock === 1
+			? "¡Ultima unidad disponible!"
+			: stock > 1
+			? `${stock} Unidades disponibles`
+			: "No hay unidades disponibles";
+
 	const handleOpen = () => setNotification(true);
 
 	const handleClose = () => {
@@ -49,11 +56,7 @@ function ItemCount({ stock, initial, onAdd, changeQuantity, quantity }) {
 						fontSize={15}
 						textAlign={"center"}
 					>
-						{sendQuantity
-							? `(${quantity}) Productos agregados`
-							: stock
-							? `${stock} Unidades disponibles`
-							: "No hay unidades disponibles"}
+						{!sendQuantity ? `${msgCounter}` : `(${quantity}) Productos agregados`}
 					</Typography>
 					<Counter
 						initial={initial}

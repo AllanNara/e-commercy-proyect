@@ -6,7 +6,7 @@ function ItemList({ items }) {
 	return (
 		<Box
 			sx={{
-				marginTop: 2,
+				marginTop: 4,
 				display: "flex",
 				flexWrap: "wrap",
 				justifyContent: "center",

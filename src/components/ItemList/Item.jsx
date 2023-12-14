@@ -1,5 +1,4 @@
 import {
-	Button,
 	Card,
 	CardContent,
 	CardMedia,
@@ -13,18 +12,31 @@ import { Link } from "react-router-dom";
 function Item({ item }) {
 	const { id, title, price, thumbnail } = item;
 
-  // :: TODO: Cambiar los titulos desde la base de datos
-	const titleParse = title.split(" ").slice(0, 5).join(" ");
-
 	return (
-		<Box sx={{ borderRadius: 1 }}>
+		<Box
+			sx={{
+				borderRadius: 1,
+				flexBasis: "20%",
+				mx: 2.5,
+				mb: 2
+			}}
+		>
 			<Link to={`/item/${id}`}>
-				<Card sx={{ maxWidth: 350, width: 350, height: 290, maxHeight: 345 }}>
+				<Card
+					sx={{
+						maxWidth: 500,
+						minWidth: 300,
+						width: "auto",
+						height: 400,
+						maxHeight: 345,
+					}}
+				>
 					<Typography
 						sx={{
 							position: "absolute",
 							margin: 0.5,
 							fontWeight: 500,
+							fontSize: 18,
 							p: 1,
 							borderRadius: 2,
 							bgcolor: "#fff",
@@ -37,9 +49,9 @@ function Item({ item }) {
 					<Box sx={{ bgcolor: "#eee" }}>
 						<CardMedia
 							component="img"
-							height="194"
+							height="230"
 							image={thumbnail}
-							sx={{ ":hover": { opacity: 0.3 }  }}
+							sx={{ ":hover": { opacity: 0.3 } }}
 						/>
 					</Box>
 					<CardContent
@@ -47,18 +59,19 @@ function Item({ item }) {
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "space-between",
-							height: "45%",
+							height: "28%",
 						}}
 					>
 						<Divider />
 						<Typography
 							variant="body1"
 							color="text.secondary"
+							fontSize={17}
 							sx={{ textAlign: "center" }}
 						>
-							{titleParse}
+							{title}
 						</Typography>
-						<Button></Button>
+						{/* <Button></Button> */}
 					</CardContent>
 				</Card>
 			</Link>

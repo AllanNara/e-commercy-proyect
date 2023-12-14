@@ -14,7 +14,8 @@ const useForm = (fields, verifyFields) => {
 		setFormData({ ...formData, [name]: value });
 }
 	const resetForm = () => {
-		if(!validateForm()) return
+		// if(!validateForm()) return
+		setErrors({})
 		setFormData(
 			fields.reduce((data, field) => {
 				data[field] = "";

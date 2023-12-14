@@ -38,7 +38,7 @@ function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} })
 				<Typography variant="h5" sx={{ mb: 3, alignSelf: "flex-start", ml: 4 }}>
 					Complete sus datos:
 				</Typography>
-				<form onSubmit={createOrder} autoComplete="off">
+				<Box component={"form"} onSubmit={createOrder} autoComplete="off">
 					<FormControl sx={{ gap: 1.2 }}>
 						<InputForm
 							label="Nombre"
@@ -71,7 +71,6 @@ function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} })
 						<Button
 							variant="outlined"
 							sx={{ width: 230, p: 1, mt: 2 }}
-							disabled={!!errors.length}
 							type="submit"
 						>
 							<Typography variant="overline" fontWeight={400} fontSize={13}>
@@ -79,7 +78,7 @@ function CheckoutForm({ formData, inputChange, createOrder, user, errors = {} })
 							</Typography>
 						</Button>
 					</FormControl>
-				</form>
+				</Box>
 			</Paper>
 		</>
 	);

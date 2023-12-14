@@ -5,13 +5,13 @@ import CartListContainer from "../Cart/CartListContainer";
 import Checkout from "../Checkout/Checkout";
 import NavBar from "../NavBar/NavBar";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import Login from "../Auth/Login/Login";
-import Register from "../Auth/Register/Register";
 import PublicRoutes from "./PublicRoutes";
 import useAuth from "../../hooks/useAuth";
 import Spinner from "../common/Spinner";
 import CheckoutCompleted from "../Checkout/CheckoutCompleted";
 import Footer from "../Footer/Footer";
+import Login from "../Auth/Login";
+import Register from "../Auth/Register";
 
 export default function AppRoutes() {
 	const { logout, user, loadingUser } = useAuth();
