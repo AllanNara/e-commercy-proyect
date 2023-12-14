@@ -10,6 +10,7 @@ function Spinner({ msg = "Cargando contenido...", styles = {}, size = 90 }) {
 		height: "100%",
 		gap: 7,
 		marginTop: 8,
+		userSelect: "none",
 		...styles,
 	};
 	return (
