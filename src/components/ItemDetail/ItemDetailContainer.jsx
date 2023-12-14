@@ -1,9 +1,9 @@
-import { Box, Paper } from "@mui/material";
 import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { Product } from "../../services";
+import CustomContainer from "../common/CustomContainer";
 
 export default function ItemDetailContainer() {
 	const [data, setData] = useState(null);
@@ -26,19 +26,8 @@ export default function ItemDetailContainer() {
 	}, [itemId, navigate]);
 
 	return (
-		<>
-			<Paper sx={{ m: 2, mb: -4, p: 0.5, pb: 10 }} variant="outlined">
-				<Box
-					sx={{
-						width: "95%",
-						height: "100%",
-						margin: "auto",
-						marginTop: 1,
-					}}
-				>
-					{data ? <ItemDetail item={data} /> : <Spinner />}
-				</Box>
-			</Paper>
-		</>
+		<CustomContainer>
+			{data ? <ItemDetail item={data} /> : <Spinner />}
+		</CustomContainer>
 	);
 }

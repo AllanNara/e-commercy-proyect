@@ -1,17 +1,14 @@
 import PropTypes from "prop-types";
 import ItemCount from "./ItemCount";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
 	Box,
-	Breadcrumbs,
 	Divider,
-	IconButton,
 	Paper,
 	Typography,
 } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
 import useCart from "../../hooks/useCart";
+import CustomBreadcrums from "../common/CustomBreadcrums";
 
 function ItemDetail({ item }) {
 	const {
@@ -29,6 +26,7 @@ function ItemDetail({ item }) {
 	const [quantity, setQuantity] = useState();
 	const { addToCart, setRefresh } = useCart();
 
+
 	const handleOnAdd = () => {
 		if (!quantity) return;
 		const item = {
@@ -43,28 +41,7 @@ function ItemDetail({ item }) {
 
 	return (
 		<>
-			<Breadcrumbs sx={{ fontSize: 20, marginBottom: 1 }}>
-				<Link to={"/"}>
-					<IconButton disableRipple edge="end" size="small" sx={{ gap: 0.3 }}>
-						<HomeIcon fontSize="medium" />
-						<Typography
-							color="text.secondary"
-							sx={{ ":hover": { textDecoration: "underline" } }}
-						>
-							Home
-						</Typography>
-					</IconButton>
-				</Link>
-				<Link to={`/categories/${categoryKey}`}>
-					<Typography
-						color="text.primary"
-						sx={{ ":hover": { textDecoration: "underline" } }}
-					>
-						{category}
-					</Typography>
-				</Link>
-			</Breadcrumbs>
-
+			<CustomBreadcrums label={category} linkTo={`/categories/${categoryKey}`}/>
 			<Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
 				<Paper
 					sx={{
