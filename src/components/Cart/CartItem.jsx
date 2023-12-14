@@ -26,36 +26,39 @@ function CartItem({ item }) {
 
 	return (
 		<Card sx={{ display: "flex", marginBottom: 2, py: 2 }}>
-			<CardMedia
-				component="img"
-				alt={title}
-				height="100"
-				image={thumbnail}
-				sx={{ width: 100, objectFit: "contain", ml: 2, borderRadius: 2 }}
-			/>
+			<Box sx={{display: "flex", flexDirection: "row", alignItems: "center" }}>
+				<CardMedia
+					component="img"
+					alt={title}
+					height="100"
+					image={thumbnail}
+					sx={{ width: 100, objectFit: "contain", ml: 2, borderRadius: 2 }}
+				/>
+				<Link to={`/item/${id}`}>
+					<Typography
+						variant="h6"
+						sx={{ minWidth: "100%", width: 240, color: "cadetblue", textAlign: "center" }}
+						fontSize={18}
+					>
+						{title}
+					</Typography>
+				</Link>
+			</Box>
 
 			<CardContent
 				sx={{
 					flex: 1,
 					display: "flex",
-					flexDirection: "row",
-					justifyContent: "flex-end",
-					gap: 5,
+					justifyContent: "space-between",
 					alignItems: "center",
 				}}
 			>
-				<Link to={`/item/${id}`}>
-					<Typography variant="h6" sx={{ minWidth: "100%", width: 240, color: "cadetblue"}} fontSize={18}>
-						{title}
-					</Typography>
-				</Link>
-
 				<Typography variant="body2" color="text.secondary">
-					Price: ${price}
+					Precio: ${price}
 				</Typography>
 
 				<Typography variant="body2" color="text.secondary">
-					Quantity: {quantity}
+					Cantidad: {quantity}
 				</Typography>
 
 				<Box
@@ -64,6 +67,8 @@ function CartItem({ item }) {
 						alignItems: "center",
 						marginTop: "auto",
 						flexDirection: "column",
+						width: "25%",
+						mt: -1
 					}}
 				>
 					{loading ? (
@@ -84,23 +89,24 @@ function CartItem({ item }) {
 						cb={updateQuantity}
 					/>
 				</Box>
-				<Typography
-					variant="body1"
-					fontWeight={400}
-					fontSize={17.2}
-					sx={{ marginTop: "auto" }}
-				>
-					Subotal: ${total}
-				</Typography>
+				<Box sx={{display: "flex", alignItems: "center"}}>
+					<Typography
+						variant="body1"
+						fontWeight={400}
+						fontSize={17.2}
+					>
+						Subotal: ${total}
+					</Typography>
 
-				<IconButton
-					color="error"
-					size="large"
-					onClick={() => removeItem(id)}
-					sx={{ marginTop: "auto", mr: 2 }}
-				>
-					<DeleteIcon />
-				</IconButton>
+					<IconButton
+						color="error"
+						size="large"
+						onClick={() => removeItem(id)}
+						sx={{ mx: 2 }}
+					>
+						<DeleteIcon />
+					</IconButton>
+				</Box>
 			</CardContent>
 		</Card>
 	);
