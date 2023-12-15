@@ -4,11 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { Product } from "../../services";
 import CustomContainer from "../common/CustomContainer";
+import useFav from '../../hooks/useFav'
 
 export default function ItemDetailContainer() {
 	const [data, setData] = useState(null);
 	const navigate = useNavigate();
 	const { itemId } = useParams();
+	const { isInList, addFavorite, removeFavorite } = useFav();
+
 
 	useEffect(() => {
 		Product.read(itemId)
@@ -27,7 +30,7 @@ export default function ItemDetailContainer() {
 
 	return (
 		<CustomContainer>
-			{data ? <ItemDetail item={data} /> : <Spinner />}
+			{data ? <ItemDetail item={data} isFavorite={isInList(data.id)} {...{ addFavorite, removeFavorite }} /> : <Spinner />}
 		</CustomContainer>
 	);
 }
