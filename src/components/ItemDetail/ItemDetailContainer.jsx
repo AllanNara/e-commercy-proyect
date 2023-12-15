@@ -12,6 +12,9 @@ export default function ItemDetailContainer() {
 	const { itemId } = useParams();
 	const { isInList, addFavorite, removeFavorite } = useFav();
 
+	useEffect(() => {
+		window.scrollTo({ top: 100, behavior: 'instant' })
+	}, [])
 
 	useEffect(() => {
 		Product.read(itemId)

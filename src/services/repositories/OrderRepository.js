@@ -47,7 +47,8 @@ export default class OrderRepository extends BaseRepository {
 				id: product.id,
 				update: { stock: product.stock - item.quantity },
 			};
-			if (!toUpdate.stock) toUpdate.update.status = false;
+
+			if (!toUpdate.update.stock) toUpdate.update.status = false;
 
 			newStockPerProduct.push(toUpdate);
 		}

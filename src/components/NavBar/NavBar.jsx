@@ -2,7 +2,7 @@ import { Category } from "../../services/index.js";
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AccountWidget from "./AccountWidget.jsx";
-import BeenhereIcon from "@mui/icons-material/Beenhere";
+import ContentPasteSearchSharpIcon from '@mui/icons-material/ContentPasteSearchSharp';
 import Box from "@mui/material/Box";
 import Brand from "./Brand.jsx";
 import CartWidget from "./CartWidget.jsx";
@@ -51,9 +51,9 @@ export default function NavBar({ user, logout, load = false }) {
 
 						<Box sx={{ display: "flex", alignItems: "center", gap: 2.5 }}>
 							<Link to={`/orders`}>
-								<Tooltip title="Mis compras">
+								<Tooltip title="Busca tu orden">
 									<IconButton size="medium">
-										<BeenhereIcon
+										<ContentPasteSearchSharpIcon
 											sx={{
 												":hover": { color: "chocolate" },
 												width: 30,

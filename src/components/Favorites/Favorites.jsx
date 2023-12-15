@@ -25,7 +25,6 @@ export default function Favorites() {
 
 	const Bread = () => <CustomBreadcrums label={"Favorites"} />;
 
-	console.log({ favorite: favoritesList[0] });
 	if (loading) return <Spinner />;
 	return (
 		<CustomContainer BreadComponent={Bread}>

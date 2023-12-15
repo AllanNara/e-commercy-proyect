@@ -23,9 +23,9 @@ function Brief({ cart, total_to_pay, total_items }) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{cart.map((item) => (
+						{cart.map((item, index) => (
 							<TableRow
-								key={item.id}
+								key={index}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<Tooltip title={item.title} placement="top">
@@ -43,7 +43,7 @@ function Brief({ cart, total_to_pay, total_items }) {
 									</TableCell>
 								</Tooltip>
 								<TableCell align="center">{item.quantity}</TableCell>
-								<TableCell align="center">$ {item.total}</TableCell>
+								<TableCell align="center">$ {item.total ?? item.subtotal}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
@@ -61,7 +61,7 @@ function Brief({ cart, total_to_pay, total_items }) {
 						</TableRow>
 						<TableRow>
 							<TableCell colSpan={2} align="right" variant="head" sx={{ fontSize: 18 }}>
-								Total a pagar:
+								Total:
 							</TableCell>
 							<TableCell
 								size="medium"

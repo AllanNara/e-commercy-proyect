@@ -41,8 +41,10 @@ export default function Checkout({ user, logout }) {
 	const buildNewOrder = () => {
 		const order = {
 			buyer: { ...formData, user: user.email },
-			items: cart.map(({ id, quantity }) => ({
+			items: cart.map(({ id, quantity, total, title }) => ({
 				product: doc(firestoreInstance, "/products/" + id),
+				subtotal: total,
+				title,
 				quantity,
 			})),
 			total_to_pay,

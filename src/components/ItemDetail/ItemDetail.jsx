@@ -35,8 +35,6 @@ function ItemDetail({ item, isFavorite, addFavorite, removeFavorite }) {
 		setRefresh(true);
 	};
 
-	console.log({ isFavorite });
-
 	return (
 		<>
 			<CustomBreadcrums label={category} linkTo={`/categories/${categoryKey}`} />
