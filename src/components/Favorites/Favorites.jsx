@@ -49,6 +49,7 @@ export default function Favorites() {
 								alignItems: "center",
 								width: "60%",
 								mb: 5,
+								ml: 10
 							}}
 						>
 							<HeartBrokenSharpIcon sx={{ fontSize: 100 }} />
