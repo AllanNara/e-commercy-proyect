@@ -52,7 +52,7 @@ export default function NavBar({ user, logout, load = false }) {
 						<Box sx={{ display: "flex", alignItems: "center", gap: 2.5 }}>
 							<Link to={`/orders`}>
 								<Tooltip title="Mis compras">
-									<IconButton size="medium" sx={{ visibility: user ? "" : "hidden" }}>
+									<IconButton size="medium">
 										<BeenhereIcon
 											sx={{
 												":hover": { color: "chocolate" },
@@ -67,7 +67,7 @@ export default function NavBar({ user, logout, load = false }) {
 
 							<Link to={`/favorites`}>
 								<Tooltip title="Mis favoritos">
-									<IconButton size="medium" sx={{ visibility: user ? "" : "hidden" }}>
+									<IconButton size="medium">
 										<FavoriteIcon
 											sx={{
 												":hover": { color: "chocolate" },

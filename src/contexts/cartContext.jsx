@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CartStorage from "./storage/CartStorage";
 
 function getInitialState() {
-	const cart = localStorage.getItem("cartSaved");
+	const cart = sessionStorage.getItem("cartSaved");
 	return cart ? JSON.parse(cart) : [];
 }
 
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
 	}, [refresh, setRefresh]);
 
 	useEffect(() => {
-		localStorage.setItem("cartSaved", JSON.stringify(cartList, null, 2));
+		sessionStorage.setItem("cartSaved", JSON.stringify(cartList, null, 2));
 	}, [cartList]);
 
 	return (

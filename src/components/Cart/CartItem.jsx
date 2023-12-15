@@ -72,7 +72,7 @@ function CartItem({ item }) {
 					}}
 				>
 					{loading ? (
-						<Spinner msg="" styles={{ gap: 4, marginTop: 2, height: "10px" }} size={20} />
+						<Spinner msg="" styles={{ gap: 4, marginTop: 2, height: "10px" }} size={25} />
 					) : availableStock === 1 ? (
 						<Typography variant="caption">¡Ultima unidad disponible!</Typography>
 					) : availableStock > 1 ? (

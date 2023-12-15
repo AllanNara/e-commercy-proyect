@@ -12,6 +12,7 @@ import CheckoutCompleted from "../Checkout/CheckoutCompleted";
 import Footer from "../Footer/Footer";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import Favorites from "../Favorites/Favorites";
 
 export default function AppRoutes() {
 	const { logout, user, loadingUser } = useAuth();
@@ -38,6 +39,7 @@ export default function AppRoutes() {
 					<Route exact path="/cart" element={<CartListContainer />} />
 					<Route exact path="/cart/checkout" element={<Checkout user={user} logout={logout} />} />
 					<Route exact path="/cart/checkout/completed" element={<CheckoutCompleted />} />
+					<Route exact path="/favorites" element={<Favorites />} />
 					<Route path="*" element={<PageNotFound />} />
 				</Route>
 			</Routes>

@@ -1,12 +1,7 @@
 import PropTypes from "prop-types";
 import ItemCount from "./ItemCount";
 import { useState } from "react";
-import {
-	Box,
-	Divider,
-	Paper,
-	Typography,
-} from "@mui/material";
+import { Box, Divider, Paper, Typography } from "@mui/material";
 import useCart from "../../hooks/useCart";
 import CustomBreadcrums from "../common/CustomBreadcrums";
 
@@ -26,7 +21,6 @@ function ItemDetail({ item }) {
 	const [quantity, setQuantity] = useState();
 	const { addToCart, setRefresh } = useCart();
 
-
 	const handleOnAdd = () => {
 		if (!quantity) return;
 		const item = {
@@ -41,8 +35,8 @@ function ItemDetail({ item }) {
 
 	return (
 		<>
-			<CustomBreadcrums label={category} linkTo={`/categories/${categoryKey}`}/>
-			<Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+			<CustomBreadcrums label={category} linkTo={`/categories/${categoryKey}`} />
+			<Box sx={{ display: "flex", justifyContent: "space-evenly", mt: 3 }}>
 				<Paper
 					sx={{
 						display: "flex",
@@ -51,7 +45,16 @@ function ItemDetail({ item }) {
 						flexBasis: "45%",
 					}}
 				>
-					<img src={thumbnail} alt={title} style={{ height: "auto", width: "80%" }} />
+					<img
+						src={thumbnail}
+						alt={title}
+						style={{
+							height: "100%",
+							width: "100%",
+							objectFit: "contain",
+							maxHeight: 530,
+						}}
+					/>
 				</Paper>
 
 				<Paper

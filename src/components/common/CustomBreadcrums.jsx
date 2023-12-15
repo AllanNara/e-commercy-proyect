@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 
 function CustomBreadcrums({ label, linkTo = "#", label2, linkTo2 = "#" }) {
 	return (
-		<Breadcrumbs sx={{ fontSize: 20, marginBottom: 1 }}>
+		<Breadcrumbs sx={{ fontSize: 20, marginBottom: 1, marginLeft: 3 }}>
 			<Link to={"/"}>
 				<IconButton disableRipple edge="end" size="small" sx={{ gap: 0.3 }}>
 					<HomeIcon fontSize="medium" sx={{ mr: 0.5 }} />

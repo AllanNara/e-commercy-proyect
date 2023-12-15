@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 function CustomContainer({ children, BreadComponent, bgc, customS }) {
 	const stylesPaper = { m: 2, mb: -4, p: 0.5, pb: 10 }
 	if(bgc) stylesPaper.bgcolor = bgc;
+	else stylesPaper.bgcolor = "#f1f1fd"
 
 	const stylesBox = {
-		width: "95%",
-		height: "100%",
 		margin: "auto",
 		marginTop: 1,
+		position: "relative",
 		...customS
 	}
 	

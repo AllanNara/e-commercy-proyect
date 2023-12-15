@@ -3,6 +3,7 @@ import { StoreProvider } from "./contexts/storeContext.jsx";
 import { CartProvider } from "./contexts/cartContext.jsx";
 import AppRoutes from "./components/Routes/AppRoutes.jsx";
 import { AuthProvider } from "./contexts/authContext.jsx";
+import { FavoriteProvider } from "./contexts/favoriteContext.jsx";
 
 export default function App() {
 	return (
@@ -11,7 +12,9 @@ export default function App() {
 				<AuthProvider>
 					<StoreProvider>
 						<CartProvider>
-							<AppRoutes />
+							<FavoriteProvider>
+								<AppRoutes />
+							</FavoriteProvider>
 						</CartProvider>
 					</StoreProvider>
 				</AuthProvider>

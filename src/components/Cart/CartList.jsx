@@ -19,7 +19,7 @@ function CartList({ list, toPay, totalQuantity }) {
 			<Link to="/cart/checkout">
 				<CustomButtom
 					content={"Continuar con la compra"}
-					customS={{ mt: -2, width: 400 }}
+					customS={{ mt: -2, width: 400, bgcolor: "#fff" }}
 				/>
 			</Link>
 		</Container>

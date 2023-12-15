@@ -1,13 +1,13 @@
 import { CircularProgress, Container, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
-function Spinner({ msg = "Cargando contenido...", styles = {}, size = 90 }) {
+function Spinner({ msg = "Cargando contenido...", styles = {}, size = 110 }) {
 	let st = {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		justifyContent: "space-evenly",
-		height: "100%",
+    justifyContent: "center",
+		height: "60vh",
 		gap: 7,
 		marginTop: 8,
 		userSelect: "none",

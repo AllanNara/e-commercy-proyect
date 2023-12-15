@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Item from "./Item";
 import { Box } from "@mui/material";
 
-function ItemList({ items }) {
+function ItemList({ items, isInList, addFavorite, removeFavorite }) {
 	return (
 		<Box
 			sx={{
@@ -14,7 +14,12 @@ function ItemList({ items }) {
 			}}
 		>
 			{items.map((item) => (
-				<Item key={item.id} item={item} />
+				<Item
+					key={item.id}
+					item={item}
+					isFavorite={isInList(item.id)}
+					{...{ addFavorite, removeFavorite }}
+				/>
 			))}
 		</Box>
 	);
@@ -22,6 +27,9 @@ function ItemList({ items }) {
 
 ItemList.propTypes = {
 	items: PropTypes.array.isRequired,
+	isInList: PropTypes.func,
+	addFavorite: PropTypes.func,
+	removeFavorite: PropTypes.func,
 };
 
 export default ItemList;

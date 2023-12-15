@@ -6,6 +6,7 @@ import { Category, Product } from "../../services";
 import ItemList from "./ItemList";
 import Spinner from "../common/Spinner";
 import useStore from "../../hooks/useStore";
+import useFav from "../../hooks/useFav";
 
 ItemListContainer.propTypes = {
 	greeting: PropTypes.string,
@@ -15,7 +16,7 @@ function ItemListContainer({ greeting = "Todas las categorías" }) {
 	const { productList, loading } = useStore();
 	const [productsByCategory, setProductsByCategory] = useState([]);
 	const [loadingCategory, setLoadingCategory] = useState(false);
-
+	const { isInList, addFavorite, removeFavorite } = useFav();
 	const { categoryKey } = useParams();
 	const { state } = useLocation();
 
@@ -77,7 +78,10 @@ function ItemListContainer({ greeting = "Todas las categorías" }) {
 				{loading || (categoryKey && loadingCategory) ? (
 					<Spinner />
 				) : (
-					<ItemList items={categoryKey ? productsByCategory : productList} />
+					<ItemList
+						items={categoryKey ? productsByCategory : productList}
+						{...{ isInList, addFavorite, removeFavorite }}
+					/>
 				)}
 			</Box>
 			{/* <Pagination count={10} size="large" sx={{alignSelf: "center", marginTop: 5}}/> */}
