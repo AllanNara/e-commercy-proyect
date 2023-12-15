@@ -1,7 +1,7 @@
 import { Box, Paper } from "@mui/material";
 import PropTypes from "prop-types";
 
-function CustomContainer({ children, BreadComponent, bgc, customS }) {
+function CustomContainer({ children, BreadComponent, bgc, cs }) {
 	const stylesPaper = { m: 2, mb: -4, p: 0.5, pb: 10 }
 	if(bgc) stylesPaper.bgcolor = bgc;
 	else stylesPaper.bgcolor = "#f1f1fd"
@@ -10,7 +10,7 @@ function CustomContainer({ children, BreadComponent, bgc, customS }) {
 		margin: "auto",
 		marginTop: 1,
 		position: "relative",
-		...customS
+		...cs
 	}
 	
 	return (
@@ -28,7 +28,7 @@ CustomContainer.propTypes = {
 	label: PropTypes.string,
 	linkTo: PropTypes.string,
 	bgc: PropTypes.string,
-	customS: PropTypes.object,
+	cs: PropTypes.object,
 	BreadComponent: PropTypes.func,
 };
 

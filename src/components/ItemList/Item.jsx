@@ -136,7 +136,7 @@ const StyledCard = styled(Card)(() => ({
 	maxWidth: 500,
 	minWidth: 300,
 	width: "auto",
-	height: 400,
+	height: 330,
 	maxHeight: 345,
 }));
 

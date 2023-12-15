@@ -1,13 +1,13 @@
 import { Button, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
-function CustomButtom({ content, handleClick, customS }) {
+function CustomButtom({ content, handleClick, cs, showIcon, disabled = false}) {
 	const customStyles = {
 		bgcolor: "#eee",
 		color: "#000",
 		":hover": { bgcolor: "#000", color: "#fff" },
 		mt: 4,
-		...customS
+		...cs
 	}
 
 	return (
@@ -15,8 +15,10 @@ function CustomButtom({ content, handleClick, customS }) {
 			onClick={handleClick ? handleClick : null}
 			variant="contained"
 			type="submit"
+			disabled={disabled}
 			sx={customStyles}
 		>
+			{showIcon && showIcon()}
 			<Typography variant="overline">{content}</Typography>
 		</Button>
 	);
@@ -25,7 +27,9 @@ function CustomButtom({ content, handleClick, customS }) {
 CustomButtom.propTypes = {
 	content: PropTypes.string,
 	handleClick: PropTypes.func,
-	customS: PropTypes.object
+	cs: PropTypes.object,
+	showIcon: PropTypes.any,
+	disabled: PropTypes.bool
 };
 
 export default CustomButtom;
