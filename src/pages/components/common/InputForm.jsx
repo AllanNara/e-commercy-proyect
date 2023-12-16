@@ -12,6 +12,7 @@ function InputForm({ label, error, data, inputChange, name = "" }) {
 				error={!!error}
 				value={data}
 				onChange={inputChange}
+				type={name === "email" || name === "password" ? name : "text"}
 				variant="outlined"
 				size="small"
 			/>

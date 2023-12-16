@@ -5,7 +5,7 @@ export function checkErrors (to = "login") {
 
 		if (!email.trim().length) errors.email = "No se ingreso un correo";
 		else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.trim()))
-			errors.email = "El formato de correo es valido";
+			errors.email = "El formato de correo no es valido";
 
 		if (!password.trim().length) errors.password = "No se ingreso una contraseña";
 
