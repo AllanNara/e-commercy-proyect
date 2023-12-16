@@ -14,7 +14,7 @@ const useForm = (fields, verifyFields) => {
 		setFormData({ ...formData, [name]: value });
 }
 	const resetForm = () => {
-		// if(!validateForm()) return
+		if(!validateForm()) return
 		setErrors({})
 		setFormData(
 			fields.reduce((data, field) => {
@@ -24,13 +24,15 @@ const useForm = (fields, verifyFields) => {
 		);
 	};
 
+	const resetErrors = () => setErrors({})
+
 	const validateForm = () => {
 		const err = verifyFields(formData);
 		setErrors(err);
 		return !Object.keys(err).length;
 	};
 
-	return { formData, inputChange, resetForm, errors, validateForm };
+	return { formData, inputChange, resetForm, errors, validateForm, resetErrors };
 };
 
 export default useForm;

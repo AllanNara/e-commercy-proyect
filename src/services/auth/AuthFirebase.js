@@ -14,18 +14,14 @@ export default class AuthenticationFirebase {
 		this.stateListening = (cb) => onAuthStateChanged(this._auth, cb);
 	}
 
-	register = async (email, password) => { 
-    await createUserWithEmailAndPassword(this._auth, email, password);
-  }
+	register = (email, password) => createUserWithEmailAndPassword(this._auth, email, password);
 
-	signIn = async (email, password) => { 
-    await signInWithEmailAndPassword(this._auth, email, password);
-  }
+	signIn = (email, password) => signInWithEmailAndPassword(this._auth, email, password);
 
-	signInWithGoogle = async () => {
+	signInWithGoogle = () => {
 		const googleProvider = new GoogleAuthProvider();
-		await signInWithPopup(this._auth, googleProvider);
+		signInWithPopup(this._auth, googleProvider);
 	};
 
-	logout = async () => await signOut(this._auth);
+	logout = () => signOut(this._auth);
 }
